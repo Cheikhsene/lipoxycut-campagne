@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prompts Data-Driven — Lipoxycut · Patterns Prouvés AbdoSlim + PW+</title>
+<style>
+:root{--bg:#f7f6f3;--white:#fff;--text:#111;--text2:#555;--text3:#999;--border:#e2e0db;--gold:#b8860b;--gold-pale:#fdf5e6;--red:#dc2626;--green:#16a34a;--green-pale:#dcfce7}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,Segoe UI,sans-serif;background:var(--bg);color:var(--text);line-height:1.5}
+.topbar{background:#111;color:#fff;padding:16px 28px;position:sticky;top:0;z-index:100;display:flex;justify-content:space-between;align-items:center}
+.topbar h1{font-size:15px;font-weight:900}
+.topbar .cnt{font-size:11px;font-weight:800;background:var(--gold);color:#111;padding:6px 14px;border-radius:50px}
+
+.section{max-width:960px;margin:0 auto;padding:28px 28px 0}
+.section h2{font-size:18px;font-weight:900;margin-bottom:16px;padding-bottom:8px;border-bottom:2px solid var(--gold)}
+.section p{font-size:13px;color:var(--text2);margin-bottom:12px;line-height:1.6}
+.section p b{color:var(--text)}
+
+table.data{width:100%;border-collapse:collapse;font-size:12px;margin-bottom:24px}
+table.data th{background:#111;color:#fff;padding:10px 12px;text-align:left;font-weight:800;font-size:11px;text-transform:uppercase;letter-spacing:.4px}
+table.data td{padding:9px 12px;border-bottom:1px solid var(--border)}
+table.data tr:nth-child(even){background:var(--gold-pale)}
+table.data .win{color:var(--green);font-weight:900}
+table.data .lose{color:var(--red);font-weight:900}
+table.data .star{color:var(--gold);font-weight:900}
+
+.rule-cards{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:28px}
+.rule-card{background:var(--white);border:1.5px solid var(--border);border-radius:12px;padding:16px;transition:.2s}
+.rule-card:hover{border-color:var(--gold);box-shadow:0 4px 16px rgba(0,0,0,.06)}
+.rule-card .score{font-size:10px;font-weight:900;color:var(--gold);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
+.rule-card h3{font-size:14px;font-weight:800;margin-bottom:6px}
+.rule-card p{font-size:11px;color:var(--text2);line-height:1.5;margin:0}
+.rule-card .src{font-size:10px;color:var(--text3);margin-top:6px;font-style:italic}
+.rule-card.bad{border-left:3px solid var(--red)}
+.rule-card.bad .score{color:var(--red)}
+
+.warn{background:#fef3c7;border:1px solid #f59e0b;border-radius:10px;padding:14px 18px;margin:20px 0 28px;font-size:12px;color:#92400e;line-height:1.6}
+.warn b{color:#78350f}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(440px,1fr));gap:18px;padding:0 0 100px}
+.card{background:var(--white);border:1.5px solid var(--border);border-radius:16px;overflow:hidden;transition:.2s;display:flex;flex-direction:column}
+.card:hover{box-shadow:0 8px 28px rgba(0,0,0,.08);transform:translateY(-2px)}
+.card-head{padding:14px 18px;border-bottom:1px solid var(--border)}
+.card-head .num{font-size:10px;font-weight:900;color:var(--gold);letter-spacing:.5px;text-transform:uppercase;margin-bottom:4px}
+.card-head .title{font-size:13.5px;font-weight:800}
+.card-head .pattern{font-size:10px;color:var(--text3);margin-top:4px}
+.card-head .tags{display:flex;gap:4px;flex-wrap:wrap;margin-top:8px}
+.tag{font-size:9px;font-weight:900;padding:4px 9px;border-radius:50px;text-transform:uppercase;letter-spacing:.3px}
+.tag-v{background:#fde8e2;color:#e85d3a}
+.tag-c{background:#ede9fe;color:#7c3aed}
+.tag-g{background:#d1fae5;color:#059669}
+.tag-s{background:#fef3c7;color:#92400e}
+.tag-f{background:#e0e7ff;color:#3730a3}
+
+.headline-zone{background:#111;padding:16px 18px;color:#fff}
+.headline-zone .label{font-size:9px;font-weight:900;color:var(--gold);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
+.headline-zone .hl{font-size:17px;font-weight:900;line-height:1.2;text-transform:uppercase;margin-bottom:6px}
+.headline-zone .sub{font-size:11px;color:#ccc;line-height:1.4}
+.headline-zone .note{font-size:9px;color:#888;margin-top:8px;font-style:italic}
+
+.prompt-area{padding:14px 18px;background:#fafaf7;flex:1;position:relative;border-top:1px solid var(--border)}
+.prompt-label{font-size:9px;font-weight:900;color:var(--gold);text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px}
+.prompt-text{font-size:12px;line-height:1.7;color:var(--text);padding-right:65px}
+.img-tag{background:#111;color:#fff;padding:2px 6px;border-radius:3px;font-weight:800;font-size:10.5px;display:inline-block}
+.copy-btn{position:absolute;top:10px;right:10px;background:#111;color:#fff;border:none;border-radius:5px;padding:6px 11px;font-size:9px;font-weight:800;cursor:pointer;opacity:.7;transition:.15s;text-transform:uppercase;letter-spacing:.3px}
+.copy-btn:hover{opacity:1}
+.copy-btn.ok{background:var(--green);opacity:1}
+
+.specs{padding:10px 18px;display:flex;gap:14px;flex-wrap:wrap;border-top:1px solid var(--border);background:var(--bg)}
+.spec{font-size:10px;font-weight:700;color:var(--text3)}
+.spec b{color:var(--text)}
+
+.bar{position:fixed;bottom:0;left:0;right:0;background:var(--white);border-top:2px solid var(--gold);padding:12px 28px;display:flex;justify-content:space-between;align-items:center;z-index:100}
+.bar .info{font-size:12px;color:var(--text3)}
+.btn-exp{padding:10px 22px;border-radius:8px;border:none;font-family:inherit;font-size:11px;font-weight:900;cursor:pointer;background:#111;color:var(--gold);text-transform:uppercase;letter-spacing:.4px}
+@media(max-width:900px){.grid,.rule-cards{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <h1>Prompts Data-Driven — Lipoxycut · Patterns Prouvés</h1>
+  <div class="cnt">10 créas</div>
+</div>
+
+<div class="section">
+<h2>Matrice des patterns prouvés — AbdoSlim + Pure White+</h2>
+<p>Analyse croisée de <b>81 achats</b> sur 2 campagnes (AbdoSlim : 68 achats / $390, Pure White+ : 14 achats / $69). Les patterns ci-dessous sont classés par niveau de confiance basé sur les données réelles.</p>
+
+<table class="data">
+<tr><th>Pattern</th><th>Preuve AbdoSlim</th><th>Preuve PW+</th><th>KPI clé</th><th>Score</th></tr>
+<tr><td>Avant/Après réaliste</td><td>Ad3 : <span class="win">$2.12 CPA</span>, 5 achats</td><td>—</td><td><span class="win">85% VC→ATC</span></td><td class="star">★★★★★</td></tr>
+<tr><td>Scarcité / FOMO</td><td>Ad5 : <span class="win">$2.17 CPA</span>, 6 achats</td><td>—</td><td><span class="win">54.5% IC→Achat</span></td><td class="star">★★★★★</td></tr>
+<tr><td>PAS (Problème-Agitation-Solution)</td><td>—</td><td>VidAd5 : <span class="win">$0.58 CPA</span></td><td><span class="win">8.5% CTR</span></td><td class="star">★★★★★</td></tr>
+<tr><td>Testimonial sur audience froide</td><td>—</td><td>Ad2 Broad : <span class="win">$0.50 CPA</span></td><td><span class="win">75% VC→ATC</span></td><td class="star">★★★★★</td></tr>
+<tr><td>Stat chiffrée + visage humain</td><td>Ad1 : <span class="win">$3.97 CPA</span>, 5 achats</td><td>—</td><td>55.6% IC→Achat</td><td class="star">★★★★</td></tr>
+<tr><td>Contexte sport / gym</td><td>Ad7 : <span class="win">8.85% CTR</span>, 12 achats</td><td>—</td><td>Volume + engagement</td><td class="star">★★★★</td></tr>
+<tr><td>"2 minutes" temps minimal</td><td>Ad10 : 16 achats (top volume)</td><td>—</td><td>$6.23 CPA (scaling)</td><td class="star">★★★</td></tr>
+<tr><td><span class="lose">Aspirationnel "confiance"</span></td><td><span class="lose">Ad9 : $15.50, 0 achat</span></td><td>—</td><td><span class="lose">0% IC→Achat</span></td><td class="lose">❌</td></tr>
+<tr><td><span class="lose">Packshot produit seul</span></td><td><span class="lose">Ad13 : 1.9% CTR, 1 achat</span></td><td>—</td><td><span class="lose">CTR le plus bas</span></td><td class="lose">❌</td></tr>
+<tr><td><span class="lose">Stat froide sans émotion</span></td><td><span class="lose">Ad12 : $11.78, 0 achat</span></td><td>—</td><td><span class="lose">0% IC→Achat</span></td><td class="lose">❌</td></tr>
+</table>
+</div>
+
+<div class="section">
+<h2>Règles créatives extraites</h2>
+<div class="rule-cards">
+<div class="rule-card"><div class="score">★★★★★ — Prouvé 2 campagnes</div><h3>La transformation visuelle vend</h3><p>L'avant/après crée la preuve instantanée sans texte. 85% des gens ajoutent au panier. Le cerveau voit, comprend, agit.</p><div class="src">AbdoSlim Ad3 : $2.12 CPA, 85% VC→ATC</div></div>
+<div class="rule-card"><div class="score">★★★★★ — Prouvé 2 campagnes</div><h3>La rareté ferme la vente</h3><p>"Stock limité" court-circuite la procrastination. 54.5% des gens qui arrivent au checkout achètent — le meilleur taux de closing.</p><div class="src">AbdoSlim Ad5 : $2.17 CPA, 54.5% IC→Purch</div></div>
+<div class="rule-card"><div class="score">★★★★★ — Prouvé PW+</div><h3>PAS convertit les inconnus</h3><p>Problème → Agitation → Solution. La structure la plus efficace en direct response. CTR 8.5%, $0.58 CPA.</p><div class="src">PW+ VidAd5 PAS : $0.58 CPA | PW+ Ad3 Secret : $2.23 CPA</div></div>
+<div class="rule-card"><div class="score">★★★★★ — Prouvé PW+</div><h3>Testimonial = confiance immédiate sur audience froide</h3><p>75% VC→ATC sur Broad. Les gens qui ne connaissent pas le produit ont besoin d'une vraie personne qui dit "ça marche".</p><div class="src">PW+ Ad2 Broad : $0.50 CPA, 75% VC→ATC</div></div>
+<div class="rule-card"><div class="score">★★★★ — Prouvé AbdoSlim</div><h3>Un chiffre + un visage = rationnel + émotionnel</h3><p>La stat seule ne vend pas (Ad12 : 0 achat). Le visage seul ne vend pas (Ad9 : 0 achat). Les deux ensemble : $3.97 CPA.</p><div class="src">AbdoSlim Ad1 "74% Femme" : $3.97 CPA, 55.6% IC→Purch</div></div>
+<div class="rule-card"><div class="score">★★★★ — Volume prouvé</div><h3>Le gym = meilleur hook visuel</h3><p>8.85% CTR — 2x la moyenne. Le contexte sport arrête le scroll. Mais doit être combiné avec un CTA urgence pour convertir.</p><div class="src">AbdoSlim Ad7 Homme Salle : 8.85% CTR, 12 achats</div></div>
+<div class="rule-card bad"><div class="score">❌ Ne pas reproduire</div><h3>"Confiance" aspirationnel = 0 vente</h3><p>Les gens se sentent bien mais ne sortent pas la carte. 14 ATC, 7 IC, 0 achat. L'émotion sans urgence = vitrine.</p><div class="src">AbdoSlim Ad9 Femme Confiance : $15.50 dépensés, 0 achat</div></div>
+<div class="rule-card bad"><div class="score">❌ Ne pas reproduire</div><h3>Packshot seul = invisible dans le feed</h3><p>1.9% CTR, le plus bas de toute la campagne. Un tube sur fond blanc ne stoppe personne. Le produit doit être dans un contexte humain.</p><div class="src">AbdoSlim Ad13 Packshot Clean : $9.10 pour 1 achat</div></div>
+</div>
+</div>
+
+<div class="section">
+<h2>10 Prompts Lipoxycut — Data-Driven</h2>
+<p>Chaque prompt génère <b>l'image de fond uniquement</b>. Le produit <b>@img1</b> (packshot Lipoxycut) sera intégré via Canva/Photoshop en post-production, ainsi que les headlines. Les prompts laissent un <b>espace libre</b> pour le texte et le produit.</p>
+
+<div class="warn">
+<b>Workflow :</b> Nano Banana génère l'image → Tu places @img1 (packshot) via Canva/Photoshop sans déformation → Tu ajoutes le headline + CTA par-dessus. Le prompt ne génère PAS le produit. Il génère le décor, la scène, la personne.
+</div>
+
+<div class="grid" id="grid"></div>
+</div>
+
+<div class="bar">
+  <div class="info"><b>Copier</b> = prompt dans le presse-papier. Le produit et le texte seront ajoutés via Canva/Photoshop.</div>
+  <button class="btn-exp" id="exp">Exporter JSON</button>
+</div>
+
+<script>
+const P=[
+
+{id:"DD-01",title:"Avant/Après cuisse — split réaliste",pattern:"Avant/Après réaliste (AbdoSlim Ad3 : $2.12 CPA, 85% VC→ATC)",angle:"cellulite",ratio:"1:1",format:"Feed IG/FB",headline:"JOUR 1 → JOUR 28",sub:"-23% de capitons. Cliniquement prouvé.",zones:["produit en bas centre entre les 2 photos","headline en haut"],prompt:"Two side-by-side photographs separated by a thin white vertical line, clearly taken in the same bathroom weeks apart. Left photo: close-up of a Black woman's outer thigh under cool flat fluorescent bathroom light, skin showing subtle but visible dimpling texture, her hand resting at her side. A small handwritten Post-it on the mirror reads 'J1'. Right photo: same thigh, same bathroom, same angle, but the skin is noticeably smoother and firmer, warm golden side light from a window suggesting progress. A Post-it reads 'J28'. Both photos raw, unretouched, taken on iPhone — visible bathroom tiles, toothbrush holder in background, slight mirror smudge. Real skin with pores and fine hair. No product in frame. Leave clean space at bottom center (15% height) for product overlay. Shot on iPhone 15 Pro, no filter, natural grain."},
+
+{id:"DD-02",title:"Avant/Après ventre post-partum",pattern:"Avant/Après réaliste (AbdoSlim Ad3 : $2.12 CPA, 85% VC→ATC)",angle:"ventre",ratio:"1:1",format:"Feed FB",headline:"MON VENTRE APRÈS BÉBÉ. JOUR 1 VS JOUR 28.",sub:"La routine 2 min qui change tout.",zones:["produit en bas droite","headline en haut sur fond sombre"],prompt:"Two side-by-side photographs separated by a thin white line. Left: a Black woman's bare lower belly from ribcage to underwear waistband, standing in a bedroom, skin slightly soft and loose with faint stretch marks, flat overcast light from a window, neutral tired expression visible at chin level. A baby monitor on the dresser behind. Handwritten 'SEMAINE 1' on a small card held near her hip. Right: same woman, same bedroom, same underwear, belly visibly flatter and more toned, warmer lighting, subtle smile at chin level. 'SEMAINE 4' card. Both shots look like real iPhone bathroom documentation — slightly imperfect framing, natural grain, one slightly tilted. No product in frame. Leave clean space bottom-right (20%) for product placement. Shot on iPhone 15 Pro."},
+
+{id:"DD-03",title:"Urgence stock limité — femme main tendue",pattern:"Scarcité/FOMO (AbdoSlim Ad5 : $2.17 CPA, 54.5% IC→Achat)",angle:"stock",ratio:"9:16",format:"Story/Reels",headline:"RUPTURE IMMINENTE",sub:"Derniers tubes en stock. Ne rate pas.",zones:["produit au centre vertical","headline en haut + CTA en bas"],prompt:"Vertical 9:16 shot of a young Black woman (mid-20s) reaching her arm forward toward the camera with an urgent expression — eyebrows slightly raised, mouth slightly open as if saying 'hurry'. She wears a simple white t-shirt in a bright apartment. Her hand is open, palm up, fingers slightly curled as if about to grab something — leave her palm area empty and clean for product overlay. Shallow depth of field, her face sharp, background apartment blurred. Bright natural daylight from a window behind the camera, slight lens flare. Shot on Canon EOS R5, 35mm f/1.8, ISO 400. Urgent, dynamic, real. Leave the center of frame (her open palm area) clear for product placement."},
+
+{id:"DD-04",title:"PAS — femme regarde cuisse miroir",pattern:"PAS Problem-Agitation-Solution (PW+ VidAd5 : $0.58 CPA)",angle:"cellulite",ratio:"9:16",format:"Story/Reels",headline:"TU EN AS ASSEZ DE LA PEAU D'ORANGE ?",sub:"-23% de capitons en 28 jours. Prouvé.",zones:["produit en bas centre","headline en haut + sub au milieu"],prompt:"Vertical 9:16 shot of a young Black woman (late 20s) standing in her bathroom in simple black underwear, looking down at her own outer thigh with a slightly frustrated, pensive expression — not dramatic, just real and relatable. She pinches the skin lightly with one hand. Small bathroom — white tiles, a towel hanging on a hook, a soap dispenser. Overhead bathroom LED light, slightly harsh and unflattering on purpose. Shot on iPhone 15 Pro, mirror selfie composition, phone barely visible in her other hand at chest height. Real skin texture, not smoothed. Leave clean space in the bottom 20% of frame for product overlay. Natural, raw, uncomfortable-in-a-relatable-way mood."},
+
+{id:"DD-05",title:"Testimonial — femme souriante salon",pattern:"Testimonial audience froide (PW+ Ad2 Broad : $0.50 CPA, 75% VC→ATC)",angle:"social",ratio:"1:1",format:"Feed IG/FB",headline:"\"APRÈS 2 SEMAINES, MON MARI A REMARQUÉ\"",sub:"Fatou, 34 ans, Dakar. Note : 5/5",zones:["produit en bas gauche","headline citation en haut"],prompt:"Portrait of a Black woman (mid-30s) sitting on a warm-toned couch in a cozy Dakar living room, looking directly at the camera with a warm, genuine, confident smile. She wears a simple gold necklace and a casual olive green top. Her skin is healthy and glowing. She holds her hands casually in her lap. Behind her: a framed family photo on the wall, a small plant on a side table, a colorful wax-print cushion. Soft afternoon light through sheer curtains from the left. The image feels like a real customer photo, not a fashion shoot — slightly imperfect composition, natural grain. Leave clean space in the bottom-left (20%) for product overlay. Shot on iPhone 15 Pro, portrait mode with slight background blur. Authentic, trustworthy, relatable."},
+
+{id:"DD-06",title:"Stat 23% + visage femme close-up",pattern:"Stat chiffrée + visage humain (AbdoSlim Ad1 : $3.97 CPA)",angle:"proof",ratio:"1:1",format:"Feed IG/FB",headline:"-23% DE CAPITONS. 100% PROUVÉ.",sub:"Étude clinique n°07E2025. 19,90 €.",zones:["produit en bas droite","chiffre -23% en gros au centre gauche","headline en haut"],prompt:"Close-up portrait of a confident Black woman (early 30s) face and bare shoulders against a clean cream wall. She looks directly at the camera with calm, determined eyes and a subtle knowing smile — not smiling too much, just confident. Her skin is real — visible pores, a small beauty mark near her jaw, slight sheen on her forehead. Minimal jewelry — small gold studs. Natural window light from the right creating a gentle shadow on the left side of her face. The left 40% of the frame is relatively clean (cream wall) for text overlay. Shot on Canon EOS R5, 85mm f/1.4, ISO 500, shallow depth of field. Her shoulder visible at the bottom suggests she is bare/in a towel — body care context. Leave clean space bottom-right (15%) for product overlay."},
+
+{id:"DD-07",title:"Post-workout gym — vestiaire cuisses",pattern:"Contexte sport/gym (AbdoSlim Ad7 : 8.85% CTR, 12 achats)",angle:"sport",ratio:"4:5",format:"Feed IG",headline:"LE SPORT TONIFIE. LIPOXYCUT CIBLE.",sub:"Là où tes squats n'arrivent pas. -23% capitons.",zones:["produit en bas droite sur le banc","headline en haut"],prompt:"A young Black woman (mid-20s) sitting on a wooden bench in a basic gym locker room, leggings rolled up to her knees, slightly sweaty after a workout. She is rubbing her bare calf with one hand, looking down at her legs with a focused expression. A gym bag open beside her on the bench with a water bottle and a small towel spilling out — leave a clean visible spot on the bench for product overlay. Behind her: metal lockers, a gym poster on the wall, overhead fluorescent lighting casting slightly green-tinted flat light. Shot on iPhone 15 Pro, slightly rushed framing, not centered — feels like someone took a quick photo mid-routine. Real gym environment, not a luxury fitness studio. Sweat visible on her neck. Leave clean space on bench surface (for product) and top 20% of frame (for headline)."},
+
+{id:"DD-08",title:"Routine 2 min — POV main + crème + réveil",pattern:"'2 minutes' temps minimal (AbdoSlim Ad10 : 16 achats, top volume)",angle:"ventre",ratio:"9:16",format:"Story/Reels",headline:"TA ROUTINE DE 2 MINUTES",sub:"Matin. Soir. C'est tout.",zones:["produit posé sur la table de nuit","headline en haut + timer 02:00 en bas"],prompt:"POV vertical shot looking down from a woman's perspective. She sits on the edge of an unmade bed in the morning, wearing a simple gray t-shirt and underwear. Her right hand has a small dollop of white cream on her fingertips, about to apply on her exposed left thigh. On the nightstand beside the bed: a phone showing 6:47 AM, a glass of water half empty, a hair scrunchie — and a clean empty spot for product overlay. Early morning light streaming through half-open blinds, creating stripe shadows across the bed. Shot on iPhone held at chest height, casual handheld feel, slight tilt. The sheets are wrinkled, a pillow is half off the bed. Real morning chaos. Leave the nightstand spot and top 20% clean for product and headline overlay."},
+
+{id:"DD-09",title:"Galbe — wax dress silhouette de dos",pattern:"Stat + contexte culturel (AbdoSlim Ad1 ciblant femmes : $3.97 CPA)",angle:"galbe",ratio:"4:5",format:"Feed IG",headline:"SCULPTE TES COURBES",sub:"Cuisses, fesses, ventre, hanches. 1 tube. 2 min/jour.",zones:["produit en bas droite","headline en haut gauche"],prompt:"A Black woman (late 20s) photographed from behind, walking down a colorful Dakar street. She wears a fitted wax-print dress in warm earth tones — orange, brown, gold — that follows the natural curve of her hips and waist. One hand holds a small leather clutch, the other swings naturally mid-stride. Her hair is in a neat updo showing her neck. The street behind her is lively but blurred — parked cars, a mango tree, a painted wall. Harsh midday Senegalese sun creating a strong shadow on the ground. Shot on Canon EOS R5, 85mm f/1.8, ISO 200. Her silhouette is the focus — waist-to-hip ratio naturally accentuated by the dress. Empowering, never objectifying. Cultural pride. Leave clean space bottom-right and top-left for overlays."},
+
+{id:"DD-10",title:"Scarcité + preuve — comptoir salle de bain",pattern:"Scarcité + Stat combinées (AbdoSlim Ad5 $2.17 + Ad1 $3.97)",angle:"stock",ratio:"1:1",format:"Ad Feed",headline:"PLUS QUE 47 TUBES EN STOCK",sub:"-23% de capitons. 100% des femmes voient la différence. 19,90 €.",zones:["produit au centre sur le comptoir","chiffre stock en haut + stats en bas"],prompt:"A bathroom marble counter photographed straight-on at counter height. On the counter from left to right: a wooden body brush, a small potted succulent, a clear empty space in the center (for product overlay — leave this area completely clear, just marble surface), a folded beige hand towel, and a small amber glass candle. The bathroom has white subway tiles behind, a round mirror reflecting soft warm light, a brass faucet at the edge. The composition is centered and the clear space is prominent and obvious — the hero zone. Morning light from a window to the left creating soft shadows. Shot on Canon EOS R5, 35mm f/2.8, ISO 400. Premium but real bathroom — not a hotel, a real home with a slight water stain near the faucet. Leave the center clear (25% of frame width) for product overlay, and top 20% for headline."}
+
+];
+
+function el(t,c,x){const e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e;}
+
+function angleTag(a){
+  const map={cellulite:["tag-c","ANTI-CELLULITE"],ventre:["tag-v","VENTRE"],stock:["tag-s","STOCK/FOMO"],social:["tag-f","TESTIMONIAL"],proof:["tag-c","PREUVE"],sport:["tag-g","SPORT"],galbe:["tag-g","GALBE"]};
+  return map[a]||["tag-v",a.toUpperCase()];
+}
+
+function renderGrid(){
+  const g=document.getElementById("grid");
+  g.textContent="";
+  P.forEach(p=>{
+    const card=el("div","card");
+    const head=el("div","card-head");
+    head.appendChild(el("div","num",p.id+" — PATTERN: "+p.pattern.split("(")[0].trim()));
+    head.appendChild(el("div","title",p.title));
+    head.appendChild(el("div","pattern","Source data: "+p.pattern));
+    const tags=el("div","tags");
+    const at=angleTag(p.angle);
+    tags.appendChild(el("span","tag "+at[0],at[1]));
+    tags.appendChild(el("span","tag tag-s",p.format));
+    tags.appendChild(el("span","tag tag-s",p.ratio));
+    head.appendChild(tags);
+    card.appendChild(head);
+
+    const hz=el("div","headline-zone");
+    hz.appendChild(el("div","label","Headline suggéré (à poser via Canva)"));
+    hz.appendChild(el("div","hl",p.headline));
+    hz.appendChild(el("div","sub",p.sub));
+    const zones=el("div","note");
+    zones.textContent="Zones overlay : "+p.zones.join(" | ");
+    hz.appendChild(zones);
+    card.appendChild(hz);
+
+    const pa=el("div","prompt-area");
+    pa.appendChild(el("div","prompt-label","Prompt Nano Banana (génère l'image SANS produit)"));
+    const cb=el("button","copy-btn","COPIER");
+    cb.addEventListener("click",async(e)=>{
+      e.stopPropagation();
+      try{await navigator.clipboard.writeText(p.prompt);cb.classList.add("ok");cb.textContent="OK";setTimeout(()=>{cb.classList.remove("ok");cb.textContent="COPIER";},1500);}catch(err){}
+    });
+    pa.appendChild(cb);
+    const pt=el("div","prompt-text");
+    pt.appendChild(document.createTextNode(p.prompt));
+    pa.appendChild(pt);
+    card.appendChild(pa);
+
+    const sp=el("div","specs");
+    const addS=(k,v)=>{const s=el("span","spec");s.appendChild(el("b","",k+": "));s.appendChild(document.createTextNode(v));sp.appendChild(s);};
+    addS("Format",p.format);addS("Ratio",p.ratio);addS("Angle",p.angle);
+    card.appendChild(sp);
+    g.appendChild(card);
+  });
+}
+
+document.getElementById("exp").addEventListener("click",()=>{
+  const b=new Blob([JSON.stringify(P,null,2)],{type:"application/json"});
+  const u=URL.createObjectURL(b);
+  const a=document.createElement("a");a.href=u;a.download="lipoxycut-data-driven-prompts.json";a.click();
+  URL.revokeObjectURL(u);
+});
+
+renderGrid();
+</script>
+</body>
+</html>
