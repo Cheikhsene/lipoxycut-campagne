@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prompts Ultra-Réalistes — Lipoxycut · 3 Angles</title>
+<style>
+:root{--v:#e85d3a;--v-pale:#fde8e2;--c:#7c3aed;--c-pale:#ede9fe;--g:#059669;--g-pale:#d1fae5;--text:#111;--text2:#555;--text3:#999;--bg:#f9f9f7;--white:#fff;--border:#e5e5e0}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,Segoe UI,sans-serif;background:var(--bg);color:var(--text);line-height:1.5}
+.topbar{background:#111;color:#fff;padding:16px 28px;position:sticky;top:0;z-index:100;display:flex;justify-content:space-between;align-items:center}
+.topbar h1{font-size:15px;font-weight:900}
+.topbar .cnt{font-size:11px;font-weight:800;background:#333;padding:6px 14px;border-radius:50px}
+.intro{padding:22px 28px;background:var(--white);border-bottom:1px solid var(--border)}
+.intro p{font-size:13px;color:var(--text2);max-width:860px;margin-bottom:6px}
+.intro b{color:#111}
+.intro .tip{background:#fffbeb;border:1px solid #fbbf24;border-radius:8px;padding:10px 14px;font-size:11px;color:#92400e;margin-top:12px;line-height:1.6}
+.filters{background:var(--white);border-bottom:1px solid var(--border);padding:12px 28px;display:flex;gap:8px;position:sticky;top:52px;z-index:99}
+.f-btn{padding:9px 18px;border-radius:50px;border:2px solid var(--border);background:var(--white);font-family:inherit;font-size:12px;font-weight:800;cursor:pointer;transition:.15s;text-transform:uppercase;letter-spacing:.4px}
+.f-btn:hover{border-color:#999}
+.f-btn.on-v{background:var(--v);color:#fff;border-color:var(--v)}
+.f-btn.on-c{background:var(--c);color:#fff;border-color:var(--c)}
+.f-btn.on-g{background:var(--g);color:#fff;border-color:var(--g)}
+.f-btn.on-all{background:#111;color:#fff;border-color:#111}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(460px,1fr));gap:18px;padding:22px 28px 100px}
+.card{background:var(--white);border:1.5px solid var(--border);border-radius:16px;overflow:hidden;transition:.2s;display:flex;flex-direction:column}
+.card:hover{box-shadow:0 8px 28px rgba(0,0,0,.08);transform:translateY(-2px)}
+.card-head{padding:14px 18px;display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.card-head .left .num{font-size:10px;font-weight:900;letter-spacing:.5px;text-transform:uppercase;margin-bottom:4px}
+.num-v{color:var(--v)}.num-c{color:var(--c)}.num-g{color:var(--g)}
+.card-head .left .title{font-size:13px;font-weight:800}
+.card-head .tags{display:flex;gap:4px;flex-shrink:0}
+.tag{font-size:9px;font-weight:900;padding:4px 9px;border-radius:50px;text-transform:uppercase;letter-spacing:.3px}
+.tag-v{background:var(--v-pale);color:var(--v)}
+.tag-c{background:var(--c-pale);color:var(--c)}
+.tag-g{background:var(--g-pale);color:var(--g)}
+.prompt-area{padding:14px 18px;background:#fafaf8;flex:1;position:relative;border-top:1px solid var(--border)}
+.prompt-text{font-size:12.5px;line-height:1.75;color:var(--text);padding-right:65px}
+.img-tag{background:#111;color:#fff;padding:2px 6px;border-radius:3px;font-weight:800;font-size:10.5px;display:inline-block}
+.copy-btn{position:absolute;top:10px;right:10px;background:#111;color:#fff;border:none;border-radius:5px;padding:6px 11px;font-size:9px;font-weight:800;cursor:pointer;opacity:.7;transition:.15s;text-transform:uppercase;letter-spacing:.3px}
+.copy-btn:hover{opacity:1}
+.copy-btn.ok{background:var(--g);opacity:1}
+.specs{padding:10px 18px;display:flex;gap:14px;flex-wrap:wrap;border-top:1px solid var(--border);background:var(--bg)}
+.spec{font-size:10px;font-weight:700;color:var(--text3)}
+.spec b{color:var(--text)}
+.bar{position:fixed;bottom:0;left:0;right:0;background:var(--white);border-top:1px solid var(--border);padding:12px 28px;display:flex;justify-content:space-between;align-items:center;z-index:100}
+.bar .info{font-size:12px;color:var(--text3)}
+.btn-exp{padding:10px 22px;border-radius:8px;border:none;font-family:inherit;font-size:11px;font-weight:900;cursor:pointer;background:#111;color:#fff;text-transform:uppercase;letter-spacing:.4px}
+@media(max-width:800px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <h1>Prompts Ultra-Realistes — Lipoxycut · 3 Angles</h1>
+  <div class="cnt" id="cnt">0</div>
+</div>
+
+<div class="intro">
+  <p><b>@img1</b> = packshot Lipoxycut Creme Sculpt & Burn. Chaque prompt est ecrit pour generer des images <b>100% photoralistes</b> — camera reelle, eclairage naturel, peau imparfaite, grain photo. Zero esthetique IA.</p>
+  <div class="tip">
+    <b>Regle anti-IA :</b> Chaque prompt specifie un appareil (Canon R5, iPhone 15 Pro), une focale, du grain naturel, et des imperfections reelles (pores, cheveux, plis de tissu). Ne jamais ajouter "beautiful", "perfect", "flawless" — ca declenche le look IA plastique.
+  </div>
+</div>
+
+<div class="filters" id="fil"></div>
+<div class="grid" id="grid"></div>
+<div class="bar">
+  <div class="info">Clic <b>Copier</b> = prompt dans le presse-papier. Upload <b>@img1</b> (packshot) dans Nano Banana avant de coller.</div>
+  <button class="btn-exp" id="exp">Exporter JSON</button>
+</div>
+
+<script>
+const P=[
+
+// ========== VENTRE ==========
+{id:"V-01",angle:"ventre",title:"Femme miroir — main sur ventre plat",ratio:"9:16",format:"Story/Reels",prompt:"A Black woman in her early 30s standing in front of a bathroom mirror, wearing high-waisted beige cotton underwear and a white cropped tank top. She is gently placing her open hand on her lower belly, looking at her reflection with a quiet, satisfied half-smile. On the marble counter beside her, the Lipoxycut tube @img1 sits next to a toothbrush holder and a half-empty glass of water. The bathroom has white subway tiles, slightly steamy mirror edges. Morning light from a frosted window on the left. Shot on Canon EOS R5, 35mm f/1.8, slight natural grain ISO 800. Her skin has visible pores and a small mole on her shoulder. Preserve the tube design exactly. No retouching look."},
+
+{id:"V-02",angle:"ventre",title:"Post-partum — application crème ventre",ratio:"4:5",format:"Feed IG",prompt:"Intimate overhead shot of a Black woman sitting on a cream-colored bed in soft gray joggers and a loose white t-shirt pulled up to just below her chest. She is squeezing a small amount of cream from the Lipoxycut tube @img1 onto her lower belly with one hand, the other hand resting on the mattress. On the nightstand: a baby monitor with a green light on, a mug of tea, a folded muslin cloth. Soft overcast daylight from a window behind the headboard. Shot on iPhone 15 Pro, natural mode, no portrait blur. Slight wrinkles on the bedsheet. Her belly shows subtle stretch marks — real, not hidden. Tube label must be readable and identical to reference."},
+
+{id:"V-03",angle:"ventre",title:"Gros plan application massage ventre",ratio:"1:1",format:"Feed IG/FB",prompt:"Tight close-up of a Black woman's hands massaging white cream in small circles on her bare lower abdomen. Her skin is real — visible pores, a faint linea alba mark, warm undertone. Her nails are short and natural with no polish. She wears the waistband of dark gray leggings pulled slightly below her navel. The Lipoxycut tube @img1 lies uncapped on the cream cotton bedsheet beside her hip, label facing up and fully readable. Warm bedside lamp light from the right, slightly orange cast. Shot on Canon EOS R5, 50mm macro, f/2.8, natural grain. No filter. Tube preserved exactly."},
+
+{id:"V-04",angle:"ventre",title:"Crop top confiance sortie",ratio:"9:16",format:"Reels",prompt:"Full-length vertical shot of a young Black woman (mid-20s) walking through a sunny Dakar street market, wearing high-waisted linen trousers and a fitted olive green crop top showing a few centimeters of her toned midriff. She carries a woven tote bag over one shoulder. She is mid-stride, looking slightly off-camera with a relaxed, natural expression. Street vendors and colorful fabrics blurred in the background. Harsh midday equatorial sun creating strong shadows. Shot on iPhone 15 Pro, slight lens flare from the sun. Her belly is flat but natural — not six-pack, just toned. No product in frame. Candid street photography feel."},
+
+{id:"V-05",angle:"ventre",title:"Mesure tour de taille — mètre ruban",ratio:"1:1",format:"Feed FB",prompt:"A Black woman in her late 30s standing in her bedroom in a simple black sports bra and matching leggings, wrapping a soft yellow measuring tape around her waist at navel height. She looks down at the tape with a focused, determined expression. The Lipoxycut tube @img1 sits on the dresser behind her, slightly out of focus but the orange packaging is clearly recognizable. A full-length mirror reflects part of the scene. Afternoon window light, slightly diffused by sheer white curtains. Shot on Canon EOS R5, 50mm f/2.0, ISO 640. Natural bedroom clutter — a phone charger, a water bottle on the dresser. Tube preserved exactly."},
+
+{id:"V-06",angle:"ventre",title:"Flat lay ventre routine matin",ratio:"1:1",format:"Feed IG",prompt:"Overhead flat lay on wrinkled white bedsheets. Items arranged casually, not perfectly: the Lipoxycut tube @img1 slightly angled, a folded measuring tape, a small ceramic cup of black coffee with a ring stain on the sheet, a phone face-down, a scrunchie, and a torn-off calendar page showing today's date circled in red. The arrangement feels real and unstaged, like someone laid out their morning routine. Soft natural daylight from above. Shot on iPhone 15 Pro overhead, slight shadow from the phone visible. Tube label sharp and preserved exactly."},
+
+{id:"V-07",angle:"ventre",title:"Ad — tube + ventre femme profil",ratio:"1:1",format:"Ad Feed",prompt:"Split composition. Left 40%: the Lipoxycut tube @img1 standing upright on a raw wooden surface, slightly weathered. A single coffee bean and a torn piece of brown paper near the base. Right 60%: soft-focus profile of a Black woman's bare torso from ribcage to hip, wearing only high-waisted cream underwear, her hand resting gently on her flat lower belly. Her skin has natural texture — a faint scar, subtle hair, warm highlights. Warm late-afternoon side light through a window. Background is a simple cream-painted wall with a slight crack. Shot on Canon EOS R5, 85mm f/1.4, natural grain ISO 1000. The right side has clean space for text overlay. Tube preserved exactly."},
+
+{id:"V-08",angle:"ventre",title:"Jeune maman jeans routine soir",ratio:"4:5",format:"Feed IG",prompt:"A young Black mother (late 20s) sitting on the bathroom floor tiles, back against the bathtub, wearing unbuttoned jeans and a basic white t-shirt. She has the Lipoxycut tube @img1 in one hand, squeezing cream onto the fingers of her other hand, about to apply on her exposed lower belly above the jeans waistband. Her expression is tired but content — end of a long day. A child's rubber duck sits on the bathtub edge behind her. Overhead bathroom light, slightly harsh, casting defined shadows. Shot on iPhone 15 Pro, night mode subtle grain. Real domestic scene. Tube label preserved exactly."},
+
+{id:"V-09",angle:"ventre",title:"Avant/Après ventre split réaliste",ratio:"1:1",format:"Ad Feed",prompt:"Two photographs placed side by side with a thin white gap between them — same woman, same bathroom, same lighting setup, clearly taken weeks apart. Left photo: a Black woman (mid-30s) standing in front of a white tiled wall, wearing black high-waisted underwear, hands at her sides, belly slightly rounded and soft, neutral expression. Right photo: same woman, same underwear, same wall, but belly visibly flatter and more toned, a subtle confident smile. Both shots are raw, unedited-looking, with the same harsh overhead fluorescent light. A small date stamp in the corner of each — left says DAY 1, right says DAY 28. The Lipoxycut tube @img1 visible on the sink counter in the right photo only. Shot on iPhone, no filter. Tube preserved exactly."},
+
+{id:"V-10",angle:"ventre",title:"POV application ventre soi-même",ratio:"9:16",format:"Story/Reels",prompt:"POV vertical shot looking down from a woman's perspective at her own bare belly. She is sitting on a beige couch in loungewear shorts. Her left hand holds the open Lipoxycut tube @img1, her right hand has a small dollop of white cream on her fingertips, about to apply. Her thighs and knees visible at the bottom of frame. A TV remote and a bowl of fruit on the coffee table in the blurred background. Evening living room lighting — warm overhead lamp, slight amber tone. Shot on iPhone held at chest height, casual handheld feel, slight motion softness. Tube label facing camera, readable, preserved exactly."},
+
+// ========== ANTI-CELLULITE ==========
+{id:"C-01",angle:"cellulite",title:"Cuisse lisse gros plan lumière naturelle",ratio:"4:5",format:"Feed IG",prompt:"Extreme close-up of a young Black woman's outer thigh, skin smooth and hydrated with a subtle sheen from recently applied cream. Visible skin texture — pores, a tiny birthmark, fine hair catching the light. No dimpling. She sits on the edge of a white bathtub wearing a rolled-up towel. Soft morning bathroom light from a window on the left. The Lipoxycut tube @img1 rests on the bathtub rim behind her leg, slightly out of focus but the orange packaging is identifiable. Shot on Canon EOS R5, 100mm macro, f/2.8, ISO 500. No editing, no smoothing filter. Tube preserved exactly."},
+
+{id:"C-02",angle:"cellulite",title:"Massage anti-cellulite cuisse salle de bain",ratio:"9:16",format:"Story/Reels",prompt:"Vertical shot of a Black woman in her late 20s sitting on a closed toilet lid in a bright small bathroom, wearing a white cotton robe open at the legs. She is firmly massaging her upper thigh with both hands in an upward motion, white cream visible on her skin. The Lipoxycut tube @img1 stands on the small bathroom shelf behind her next to a bottle of body oil and a wooden brush. Her face is partially cropped — we see her chin and a focused expression. Bright overhead LED bathroom light, slightly cool white. Shot on iPhone 15 Pro, slight bathroom mirror reflection visible in the edge of frame. Tube preserved exactly."},
+
+{id:"C-03",angle:"cellulite",title:"Jambes poolside été confiance",ratio:"4:5",format:"Feed IG",prompt:"A young Black woman (mid-20s) sitting on the edge of a small above-ground pool in a modest backyard, her toned legs dangling in the turquoise water. She wears a simple rust-colored one-piece swimsuit. Her thighs are smooth and even-toned. She is laughing at someone off-camera, head tilted back. A cheap plastic garden chair behind her with a towel draped on it. Harsh afternoon sun, strong shadows on the concrete. Shot on iPhone 15 Pro, slight overexposure on the highlights, casual summer snapshot feel. No product in frame. Aspirational but real, not resort-luxury."},
+
+{id:"C-04",angle:"cellulite",title:"POV auto-massage cuisse canapé",ratio:"9:16",format:"Reels",prompt:"POV vertical shot looking down at a Black woman's own thighs as she sits on a dark brown leather couch in denim shorts. Her right hand is kneading her left outer thigh with firm circular pressure, white cream residue visible on the skin. The Lipoxycut tube @img1 lies uncapped between her thighs on the couch cushion, label up. A laptop open on the coffee table shows a paused Netflix screen (blurred). Evening apartment lighting — warm ceiling light, slight yellow cast. Shot on iPhone held casually, slight angle, not perfectly centered. Tube preserved exactly."},
+
+{id:"C-05",angle:"cellulite",title:"Post-workout vestiaire cuisse",ratio:"1:1",format:"Feed IG",prompt:"A Black woman (late 20s) sitting on a wooden gym locker room bench, still in sweaty workout clothes — black leggings pulled up to her knees, gray sports bra. She is applying Lipoxycut cream from the tube @img1 onto her exposed calf and lower thigh, squeezing the tube with one hand. A gym bag open on the bench beside her, a water bottle, earbuds case. Overhead fluorescent locker room lighting, slightly unflattering but real. Shot on iPhone, slightly rushed composition — gym mirror reflecting the back of the room. Tube preserved exactly."},
+
+{id:"C-06",angle:"cellulite",title:"Jeans qui glissent facilement",ratio:"9:16",format:"Reels",prompt:"A young Black woman (mid-20s) standing in a bedroom, pulling up a pair of fitted medium-blue jeans over her thighs with a satisfied expression — the jeans slide on easily. She wears a white bralette. The Lipoxycut tube @img1 sits on the unmade bed behind her beside a pillow. Morning light from the window, phone charging cable on the nightstand. Her bedroom is normal — a few clothes on a chair, a poster on the wall. Shot on Canon EOS R5, 35mm f/2.0, natural grain. Candid getting-dressed moment, not posed. Tube preserved exactly."},
+
+{id:"C-07",angle:"cellulite",title:"Texture crème sur peau cuisse macro",ratio:"1:1",format:"Feed IG",prompt:"Ultra-close macro shot of a small amount of white cream being spread on dark brown skin of a woman's thigh. The cream creates thin translucent streaks as fingers drag it across the surface. Individual skin pores and fine leg hairs visible at this magnification. The cream looks rich but lightweight, absorbing quickly. Warm directional light from the left. Completely blurred background — suggestion of a bathroom. No product packaging in frame. Shot on Canon EOS R5, 100mm macro, f/2.8, ring light reflection barely visible in the cream. Medical-grade skincare photography feel."},
+
+{id:"C-08",angle:"cellulite",title:"Ad — tube + peau lisse preuve",ratio:"1:1",format:"Ad Feed",prompt:"The Lipoxycut tube @img1 lying flat on a raw linen surface, slightly creased. Next to it, a printed lab report paper (blurred but suggesting clinical data) and a soft measuring tape loosely coiled. The composition is intentionally imperfect — the tube is slightly off-center, a corner of the paper is folded. Soft overcast daylight from above, low contrast, documentary feel. Right 40% of frame is clean linen for text overlay. Shot on Canon EOS R5, 50mm f/2.8, flat color profile. No styling, no flowers, no decoration. Trust and authenticity mood. Tube preserved exactly."},
+
+{id:"C-09",angle:"cellulite",title:"Plage jambes sable confiance",ratio:"4:5",format:"Feed IG",prompt:"A Black woman's legs stretched out on warm sand, ankles crossed, from mid-thigh down. Her skin is smooth, slightly sandy, glistening with a light layer of sunscreen or body oil. She wears a simple black bikini bottom. A straw bag is partially visible at the edge of the frame with the Lipoxycut tube @img1 peeking out from the top of the bag — subtle product placement, not forced. Shallow depth of field, ocean waves blurred in the background. Late afternoon golden light. Shot on Canon EOS R5, 85mm f/1.4. Feels like a real vacation photo someone would actually post. Tube packaging identifiable."},
+
+{id:"C-10",angle:"cellulite",title:"Comparaison toucher peau doigt",ratio:"1:1",format:"Ad Feed",prompt:"Two side-by-side close-up photos of the same Black woman's thigh, clearly taken in the same bathroom with the same lighting. Left: her finger pressing into her outer thigh showing slight skin dimpling — the indent stays briefly. Right: same finger pressing same spot but the skin bounces back immediately, smooth and firm. Both photos are raw, honest, taken under the same cool bathroom LED light. No Photoshop feel. A small Post-it note stuck to the mirror in the background of the right photo reads 'Jour 28' in handwriting. The Lipoxycut tube @img1 visible on the counter in the right photo. Shot on iPhone, bathroom selfie quality. Tube preserved exactly."},
+
+// ========== GALBE ==========
+{id:"G-01",angle:"galbe",title:"Femme wax dress silhouette confiance",ratio:"4:5",format:"Feed IG",prompt:"A Black woman in her late 20s walking through a Dakar neighborhood street, wearing a fitted wax-print dress in warm orange and brown tones that accentuates her curves — hips and silhouette clearly defined. She carries a small leather bag and looks straight ahead with a natural, confident stride. Street vendors and parked cars in the soft background. Harsh midday Senegalese sun, strong shadows on the ground. Shot on Canon EOS R5, 85mm f/1.8, slight heat haze in the air. Sweat visible on her collarbone. Real street photography, not a fashion shoot. No product in frame."},
+
+{id:"G-02",angle:"galbe",title:"Application hanches miroir en pied",ratio:"9:16",format:"Story/Reels",prompt:"A Black woman (early 30s) standing in front of a full-length mirror in her bedroom, wearing matching black cotton underwear set. She is applying cream from the Lipoxycut tube @img1 onto her outer hip and upper buttock area with upward strokes. Her reflection shows her full silhouette — curves, hips, natural body shape. The bedroom behind her has an unmade bed, a phone on the nightstand, a pair of shoes on the floor. Late afternoon light through half-closed blinds creating stripe shadows. Shot on iPhone propped against something — slight tilt, mirror selfie composition. Her expression is focused, routine-like. Tube preserved exactly."},
+
+{id:"G-03",angle:"galbe",title:"Squat gym fesses toniques",ratio:"4:5",format:"Feed IG",prompt:"A young Black woman (mid-20s) at the bottom of a barbell back squat in a simple local gym — concrete walls, basic equipment. She wears dark blue leggings and a cropped gray tank. Her form is solid, glutes engaged. A training partner stands behind spotting, slightly blurred. On a small bench beside the squat rack, a gym bag is open with the Lipoxycut tube @img1 visible inside next to a water bottle and wrist wraps. Overhead industrial lighting, slightly green-tinted fluorescent. Shot on Canon EOS R5, 35mm f/2.0, slight motion blur on the barbell. Gritty, real gym feel. Tube identifiable in the bag."},
+
+{id:"G-04",angle:"galbe",title:"Massage fesses/hanches ritual soir",ratio:"9:16",format:"Story/Reels",prompt:"Vertical shot of a Black woman standing in her bathroom, one foot on the closed toilet lid, leaning forward slightly to massage cream onto her hip and upper glute area. She wears a simple white cotton underwear set. The Lipoxycut tube @img1 is balanced on the edge of the sink behind her, cap off. The bathroom is small and real — a toothbrush in a glass, tiles with grout, a small mirror on the wall. Warm yellow overhead light. Shot on iPhone in mirror, her phone visible in her other hand, classic self-filming-routine composition. Not glamorous, just real. Tube preserved exactly."},
+
+{id:"G-05",angle:"galbe",title:"Robe moulante sortie confiance",ratio:"9:16",format:"Reels",prompt:"A Black woman (late 20s) checking her profile in a hallway mirror before going out. She wears a fitted ribbed olive green midi dress that follows her curves. She turns slightly to check the back view — her silhouette is toned and sculpted, hips and glutes defined. She adjusts a gold necklace. A clutch purse on the small table beside the mirror. Warm apartment hallway lighting from a ceiling fixture. Shot on iPhone by a friend standing behind her — casual, getting-ready-to-go-out energy. Slight motion blur as she turns. No product in frame."},
+
+{id:"G-06",angle:"galbe",title:"Flat lay galbe routine hanches",ratio:"1:1",format:"Feed IG",prompt:"Overhead flat lay on a dark wooden table surface with visible grain and a small scratch. Items arranged casually: the Lipoxycut tube @img1, a wooden dry brush with natural bristles, a small jar of shea butter with the lid off, a knotted fabric resistance band (peach colored), and a torn magazine page showing a fitness article in French. A coffee ring stain on the wood near the corner. Natural daylight from a window to the left casting a soft shadow. Shot on iPhone overhead. Nothing is perfectly placed — feels like someone paused mid-routine to take a photo. Tube preserved exactly."},
+
+{id:"G-07",angle:"galbe",title:"Danse afro mouvement hanches",ratio:"9:16",format:"Reels",prompt:"A joyful young Black woman (early 20s) mid-dance in a bright living room, hips in motion, wearing high-waisted black biker shorts and a loose white crop tee. Her body movement is dynamic — hips shifted to one side, one arm up. Big genuine smile. A Bluetooth speaker on the shelf behind her, colorful cushions on the couch. Bright afternoon light flooding through large windows. Shot on iPhone by a friend, slight motion blur on her hips and hand, frozen at 1/125s. The energy is fun, confident, celebrating her body. No product in frame. Authentic UGC social media feel."},
+
+{id:"G-08",angle:"galbe",title:"Gros plan hanche courbe peau saine",ratio:"1:1",format:"Feed IG",prompt:"Close-up beauty shot of a Black woman's hip curve — the natural line from waist to hip. Her skin is healthy, warm-toned, with a subtle sheen from recently applied product. She wears the waistband of simple black cotton underwear. One hand rests on her hip naturally. Soft side lighting from a window, creating a gentle shadow that accentuates the curve. Slight natural skin texture — tiny goosebumps, a faint stretch mark. The Lipoxycut tube @img1 visible in the far background on a shelf, blurred but identifiable by its orange color. Shot on Canon EOS R5, 85mm f/1.4, shallow DOF. Tube preserved."},
+
+{id:"G-09",angle:"galbe",title:"Ad — tube + silhouette profil femme",ratio:"1:1",format:"Ad Feed",prompt:"The Lipoxycut tube @img1 standing upright on a simple wooden stool, left third of frame. Right two-thirds: soft-focus profile silhouette of a Black woman's torso from waist to mid-thigh, standing naturally, wearing beige seamless underwear. The warm late-afternoon light comes from behind her, creating a rim-light effect that outlines her hip curve. Background is a plain slightly textured cream wall. The right side has clean empty space for headline text. Shot on Canon EOS R5, 85mm f/1.4, warm white balance, slight natural grain ISO 800. Tasteful, empowering, never objectifying. Tube sharp and preserved exactly."},
+
+{id:"G-10",angle:"galbe",title:"Avant/Après hanches tonicité",ratio:"1:1",format:"Ad Feed",prompt:"Two photos side by side with a thin white divider. Both show the same Black woman (early 30s) from behind, waist to mid-thigh, wearing identical simple black underwear, standing against the same plain white wall. Left photo (SEMAINE 1): skin looks slightly less toned, softer contour on the hip-to-thigh line, flat gray lighting. Right photo (SEMAINE 4): same pose but skin looks firmer, the hip-to-glute curve is slightly more defined, warmer golden lighting suggesting progress. Both photos look like real iPhone bathroom shots — same bathroom, same tiles visible at the bottom. Handwritten date labels. The Lipoxycut tube @img1 placed on the floor in the right photo. Realistic, no dramatic transformation. Tube preserved exactly."}
+];
+
+let filter="all";
+
+function el(t,c,x){const e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e;}
+
+function angleColor(a){return a==="ventre"?"v":a==="cellulite"?"c":"g";}
+function angleLabel(a){return a==="ventre"?"VENTRE":a==="cellulite"?"ANTI-CELLULITE":"GALBE";}
+
+function renderFilters(){
+  const f=document.getElementById("fil");
+  f.textContent="";
+  [{k:"all",l:"Tous ("+P.length+")"},{k:"ventre",l:"🔥 Ventre"},{k:"cellulite",l:"💜 Anti-cellulite"},{k:"galbe",l:"💚 Galbe"}].forEach(x=>{
+    const b=el("button","f-btn",x.l);
+    if(filter===x.k) b.classList.add("on-"+(x.k==="all"?"all":angleColor(x.k)));
+    b.addEventListener("click",()=>{filter=x.k;renderFilters();renderGrid();});
+    f.appendChild(b);
+  });
+}
+
+function renderGrid(){
+  const g=document.getElementById("grid");
+  g.textContent="";
+  const list=filter==="all"?P:P.filter(p=>p.angle===filter);
+  document.getElementById("cnt").textContent=list.length+" prompts";
+  list.forEach(p=>{
+    const col=angleColor(p.angle);
+    const card=el("div","card");
+    const head=el("div","card-head");
+    const left=el("div","left");
+    left.appendChild(el("div","num num-"+col,p.id+" — "+angleLabel(p.angle)));
+    left.appendChild(el("div","title",p.title));
+    head.appendChild(left);
+    const tags=el("div","tags");
+    tags.appendChild(el("span","tag tag-"+col,p.format));
+    tags.appendChild(el("span","tag tag-"+col,p.ratio));
+    head.appendChild(tags);
+    card.appendChild(head);
+
+    const pa=el("div","prompt-area");
+    const cb=el("button","copy-btn","COPIER");
+    cb.addEventListener("click",async(e)=>{
+      e.stopPropagation();
+      try{await navigator.clipboard.writeText(p.prompt);cb.classList.add("ok");cb.textContent="OK";setTimeout(()=>{cb.classList.remove("ok");cb.textContent="COPIER";},1500);}catch(err){}
+    });
+    pa.appendChild(cb);
+    const pt=el("div","prompt-text");
+    const parts=p.prompt.split(/(@img\d+)/g);
+    parts.forEach(s=>{
+      if(/^@img\d+$/.test(s))pt.appendChild(el("span","img-tag",s));
+      else if(s)pt.appendChild(document.createTextNode(s));
+    });
+    pa.appendChild(pt);
+    card.appendChild(pa);
+
+    const sp=el("div","specs");
+    const addS=(k,v)=>{const s=el("span","spec");s.appendChild(el("b","",k+": "));s.appendChild(document.createTextNode(v));sp.appendChild(s);};
+    addS("Format",p.format);addS("Ratio",p.ratio);addS("Angle",angleLabel(p.angle));
+    card.appendChild(sp);
+    g.appendChild(card);
+  });
+}
+
+document.getElementById("exp").addEventListener("click",()=>{
+  const b=new Blob([JSON.stringify(P,null,2)],{type:"application/json"});
+  const u=URL.createObjectURL(b);
+  const a=document.createElement("a");a.href=u;a.download="lipoxycut-3-angles-prompts.json";a.click();
+  URL.revokeObjectURL(u);
+});
+
+renderFilters();renderGrid();
+</script>
+</body>
+</html>
