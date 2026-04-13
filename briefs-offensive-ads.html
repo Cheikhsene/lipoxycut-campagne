@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Briefs Ads OFFENSIVES — Lipoxycut · 30 créas commerciales</title>
+<style>
+:root{
+  --bronze:#c96b2f;--bronze-dark:#8c4418;--bronze-soft:#e89560;--bronze-pale:#f7dcc7;--bronze-bg:#fdf6f0;
+  --red:#e11d48;--red-dark:#9f1239;--red-pale:#ffe4e6;
+  --black:#0b0906;--text:#1f1912;--text-mid:#5a4a3a;--text-soft:#9a8a78;
+  --green:#16a34a;--border:#ede3d7;--bg:#fbf8f4;--white:#fff
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,Segoe UI,sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;line-height:1.5}
+
+.topbar{background:linear-gradient(90deg,var(--black),var(--bronze-dark));color:#fff;padding:16px 28px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100;box-shadow:0 3px 14px rgba(0,0,0,.2)}
+.topbar h1{font-size:16px;font-weight:900;letter-spacing:.3px;text-transform:uppercase}
+.topbar h1 span{color:var(--bronze-soft)}
+.topbar .count{font-size:11px;font-weight:800;background:var(--red);color:#fff;padding:7px 14px;border-radius:50px;text-transform:uppercase;letter-spacing:.5px}
+
+.intro{background:linear-gradient(135deg,var(--bronze-bg),#fff);padding:26px 28px;border-bottom:2px solid var(--bronze)}
+.intro h2{font-size:19px;margin-bottom:10px;color:var(--text);font-weight:900;text-transform:uppercase;letter-spacing:.3px}
+.intro p{font-size:13px;color:var(--text-mid);max-width:940px;margin-bottom:6px}
+.intro b{color:var(--bronze)}
+.intro .refs{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.intro .refs .chip{background:#fff;border:1.5px solid var(--border);padding:6px 13px;border-radius:50px;font-size:11px;font-weight:800;color:var(--text-mid)}
+.intro .refs .chip b{color:var(--bronze)}
+.intro .refs .chip.hot{border-color:var(--red);color:var(--red)}
+
+.filters{background:var(--white);border-bottom:1px solid var(--border);padding:14px 28px;display:flex;gap:8px;flex-wrap:wrap;position:sticky;top:54px;z-index:99}
+.f-btn{padding:8px 16px;border-radius:50px;border:1.5px solid var(--border);background:var(--white);font-family:inherit;font-size:12px;font-weight:800;color:var(--text-mid);cursor:pointer;transition:.15s;text-transform:uppercase;letter-spacing:.3px}
+.f-btn:hover{border-color:var(--bronze-soft);color:var(--text)}
+.f-btn.on{background:var(--bronze);color:#fff;border-color:var(--bronze)}
+.f-btn.hot.on{background:var(--red);border-color:var(--red)}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(440px,1fr));gap:20px;padding:24px 28px 110px}
+.card{background:var(--white);border:1.5px solid var(--border);border-radius:18px;overflow:hidden;transition:.2s;display:flex;flex-direction:column;position:relative}
+.card:hover{box-shadow:0 10px 30px rgba(201,107,47,.15);transform:translateY(-3px);border-color:var(--bronze-soft)}
+
+.card-head{padding:16px 20px 12px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.card-head .id-row{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.card-head .id-label{font-size:10px;color:var(--red);font-weight:900;letter-spacing:.6px;text-transform:uppercase;background:var(--red-pale);padding:3px 9px;border-radius:4px}
+.card-head .title{font-size:13.5px;font-weight:800;line-height:1.35;color:var(--text)}
+.tags{display:flex;gap:4px;flex-wrap:wrap;justify-content:flex-end;max-width:140px}
+.tag{font-size:9px;font-weight:900;padding:4px 9px;border-radius:50px;white-space:nowrap;text-transform:uppercase;letter-spacing:.3px}
+.tag-mariama{background:#dbeafe;color:#1e40af}
+.tag-fatou{background:#fce7f3;color:#9f1239}
+.tag-aissatou{background:#fef3c7;color:#92400e}
+.tag-angle-urgency{background:#fee2e2;color:#991b1b}
+.tag-angle-proof{background:#dcfce7;color:#14532d}
+.tag-angle-pain{background:#fef3c7;color:#78350f}
+.tag-angle-social{background:#e0e7ff;color:#3730a3}
+.tag-angle-value{background:#dbeafe;color:#1e3a8a}
+.tag-angle-curiosity{background:#f3e8ff;color:#5b21b6}
+.tag-angle-authority{background:#ccfbf1;color:#0f766e}
+
+.headline-zone{padding:18px 20px;background:linear-gradient(135deg,var(--black),#1f1410);color:#fff;position:relative}
+.headline-zone .kicker{font-size:9px;font-weight:900;color:var(--bronze-soft);text-transform:uppercase;letter-spacing:1.2px;margin-bottom:6px}
+.headline-zone .headline{font-size:20px;font-weight:900;line-height:1.15;color:#fff;text-transform:uppercase;letter-spacing:.2px;margin-bottom:8px}
+.headline-zone .sub{font-size:12px;line-height:1.5;color:var(--bronze-pale);font-weight:500}
+.headline-zone .cta{display:inline-block;margin-top:12px;background:var(--red);color:#fff;padding:8px 16px;border-radius:6px;font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.5px}
+.copy-head{position:absolute;top:12px;right:12px;background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.2);border-radius:5px;padding:5px 10px;font-family:inherit;font-size:9px;font-weight:800;cursor:pointer;transition:.15s;text-transform:uppercase;letter-spacing:.3px}
+.copy-head:hover{background:rgba(255,255,255,.2)}
+.copy-head.copied{background:var(--green);border-color:var(--green)}
+
+.prompt-area{padding:14px 20px;background:#fafaf7;border-top:1px solid var(--border);position:relative;flex:1}
+.prompt-label{font-size:9px;font-weight:900;color:var(--bronze);text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px}
+.prompt-text{font-size:12px;line-height:1.65;color:var(--text-mid);padding-right:70px}
+.img-tag{background:var(--bronze);color:#fff;padding:2px 7px;border-radius:4px;font-weight:800;font-size:10.5px;display:inline-block;margin:0 1px}
+.copy-prompt{position:absolute;top:12px;right:12px;background:var(--text);color:#fff;border:none;border-radius:5px;padding:6px 11px;font-family:inherit;font-size:9px;font-weight:800;cursor:pointer;transition:.15s;text-transform:uppercase;letter-spacing:.3px;opacity:.8}
+.copy-prompt:hover{opacity:1}
+.copy-prompt.copied{background:var(--green);opacity:1}
+
+.specs{padding:10px 20px 14px;display:flex;gap:14px;flex-wrap:wrap;background:var(--bronze-bg);border-top:1px solid var(--border)}
+.spec{display:flex;gap:4px;font-size:10px;font-weight:700}
+.spec .k{color:var(--text-soft)}
+.spec .v{color:var(--bronze-dark);font-weight:900}
+
+.export-bar{position:fixed;bottom:0;left:0;right:0;background:var(--white);border-top:2px solid var(--bronze);padding:14px 28px;display:flex;justify-content:space-between;align-items:center;z-index:100;box-shadow:0 -4px 16px rgba(0,0,0,.08)}
+.export-bar .info-text{font-size:12px;color:var(--text-soft)}
+.export-bar .info-text b{color:var(--text)}
+.btn-export{padding:11px 26px;border-radius:8px;border:none;font-family:inherit;font-size:11px;font-weight:900;cursor:pointer;background:var(--red);color:#fff;letter-spacing:.5px;text-transform:uppercase}
+.btn-export:hover{background:var(--red-dark)}
+
+@media(max-width:800px){.grid{grid-template-columns:1fr;padding:18px}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <h1>⚔️ Briefs Ads <span>OFFENSIVES</span> — Lipoxycut</h1>
+  <div class="count" id="countDisplay">0 créas</div>
+</div>
+
+<div class="intro">
+  <h2>💥 30 créas d'attaque direct-response — Lipoxycut Crème Sculpt &amp; Burn</h2>
+  <p>Dossier complet de <b>30 créatives commerciales offensives</b> pour campagne Meta Ads. Chaque créa combine un <b>visuel Nano Banana</b> (prompt prêt à coller, avec <b>@img1</b> = packshot Lipoxycut) et un <b>headline commercial fort</b> (accroche + sous-titre + CTA).</p>
+  <p>Angles d'attaque mixés : <b>urgence saisonnière</b>, <b>preuve clinique</b>, <b>agitation pain points</b>, <b>preuve sociale</b>, <b>valeur prix</b>, <b>curiosité</b>, <b>autorité brevet</b>. Cible : <b>femmes 25-44</b>, 3 personas (Mariama / Fatou / Aissatou).</p>
+  <div class="refs">
+    <div class="chip"><b>@img1</b> = packshot-main.png</div>
+    <div class="chip hot">-23 % capitons</div>
+    <div class="chip hot">100 % peau lisse</div>
+    <div class="chip">19,90 €</div>
+    <div class="chip">Breveté · Clinique n°07E2025</div>
+    <div class="chip">30 headlines commerciales</div>
+  </div>
+</div>
+
+<div class="filters" id="filtersBar"></div>
+<div class="grid" id="grid"></div>
+
+<div class="export-bar">
+  <div class="info-text">Chaque carte a <b>2 boutons copier</b> — un pour le headline, un pour le prompt Nano Banana.</div>
+  <button class="btn-export" id="exportBtn">📥 Exporter tout en JSON</button>
+</div>
+
+<script>
+const CREAS = [
+
+{id:"ATK-01",angle:"proof",title:"Chiffre choc 23%",targets:["mariama","fatou","aissatou"],ratio:"1:1",format:"Feed IG/FB",kicker:"Cliniquement prouvé",headline:"-23% DE CAPITONS EN 28 JOURS",sub:"Étude clinique n°07E2025. Formule brevetée. 19,90 €.",cta:"J'ESSAIE MAINTENANT",prompt:"Bold minimalist ad visual. The Lipoxycut tube from @img1 placed upright slightly tilted on a warm bronze surface, left third of frame. The right 60% of the frame is empty, clean bronze-to-cream gradient background, leaving space for a large headline text overlay. A few scattered coffee beans at the base of the tube. Dramatic rim lighting from the right, deep shadows. Cinematic direct-response ad quality. Keep the tube design 100% identical to reference. Photorealistic, 4K."},
+
+{id:"ATK-02",angle:"social",title:"Preuve 100%",targets:["mariama","fatou","aissatou"],ratio:"1:1",format:"Feed IG/FB",kicker:"Testé sur utilisatrices",headline:"100% DES FEMMES VOIENT LA DIFFÉRENCE",sub:"Peau plus lisse constatée dès les premières applications.",cta:"COMMANDER",prompt:"Split visual ad composition. Left half: a dynamic arrangement of five close-up portraits of confident Black women (different ages 25-50) with glowing skin, tiled in a soft grid. Right half: the Lipoxycut tube from @img1 standing on a cream surface with warm bronze gradient background, clean space for text overlay. Premium ad campaign, unified warm tones across both halves. Tube design preserved exactly. Photorealistic, 4K, 1:1."},
+
+{id:"ATK-03",angle:"urgency",title:"Urgence été",targets:["mariama","fatou"],ratio:"9:16",format:"Story/Reels",kicker:"Plus que quelques semaines",headline:"PRÊTE POUR L'ÉTÉ ? ELLES, OUI.",sub:"Commence ta routine 2 min/jour dès aujourd'hui. Résultats visibles en 1 semaine.",cta:"JE COMMENCE",prompt:"Vertical 9:16 ad. A confident young Black woman walking away from camera on a golden tropical beach at sunset, wearing a simple bronze swimsuit, toned legs glowing in the warm light. In the bottom quarter of the frame, the Lipoxycut tube from @img1 rests on warm sand with a few dried hibiscus petals. Dramatic golden hour lighting. Aspirational empowering mood. Tube branding sharp and preserved exactly. Photorealistic, 4K."},
+
+{id:"ATK-04",angle:"pain",title:"Cacher cuisses",targets:["fatou","aissatou"],ratio:"1:1",format:"Feed FB",kicker:"Arrête l'auto-sabotage",headline:"ARRÊTE DE CACHER TES CUISSES",sub:"Ta silhouette mérite mieux qu'un paréo. 23% de capitons en moins, prouvé.",cta:"OUI, JE VEUX",prompt:"Moody editorial ad visual. A Black woman in her 30s sitting on the edge of a bed, wearing a simple cream silk slip dress, looking out a window with a thoughtful expression. The morning light is soft and golden. On the nightstand beside her, the Lipoxycut tube from @img1 sits prominently, clearly branded. Emotional, intimate self-reflection mood. No text on image. Tube preserved exactly. Photorealistic, 4K, 1:1."},
+
+{id:"ATK-05",angle:"value",title:"2 min ROI",targets:["mariama","fatou","aissatou"],ratio:"1:1",format:"Feed IG",kicker:"La routine minimale",headline:"2 MIN/JOUR. 7 JOURS. 1 DIFFÉRENCE.",sub:"Appliquer matin et soir. C'est tout. Les résultats font le reste.",cta:"ME SIMPLIFIER LA VIE",prompt:"Clean ad visual showing three horizontal panels stacked with minimal dividers. Panel 1: the Lipoxycut tube from @img1 on a cream surface. Panel 2: elegant feminine hand squeezing cream onto fingertips. Panel 3: same hand gently massaging the thigh. Each panel warmly lit, cream unified background. Minimal editorial. Tube preserved. Photorealistic, 4K, 1:1."},
+
+{id:"ATK-06",angle:"value",title:"Mieux que le sport",targets:["mariama","fatou"],ratio:"1:1",format:"Feed IG",kicker:"Meilleur rapport effort/résultat",headline:"CE TUBE FAIT CE QUE 3 MOIS DE SPORT NE FONT PAS",sub:"Anti-capitons ciblé. Là où le sport n'atteint pas. Complément parfait de ta routine.",cta:"JE TESTE",prompt:"Split ad composition. Left half: dynamic gym scene with a young Black woman working out intensely, slightly blurred with motion. Right half: clean product shot of the Lipoxycut tube from @img1 on a bronze surface, sharp and in focus. Bronze gradient connecting both halves. Dramatic lighting contrast between motion and calm. Tube preserved exactly. Photorealistic, 4K, 1:1."},
+
+{id:"ATK-07",angle:"pain",title:"Fini peau orange",targets:["fatou","aissatou"],ratio:"1:1",format:"Feed FB",kicker:"La vraie promesse",headline:"FINI LA PEAU D'ORANGE",sub:"Caféine + Bupleurum + Biotine. Un complexe breveté qui fait le travail.",cta:"JE VEUX ESSAYER",prompt:"Minimalist bold ad visual. The Lipoxycut tube from @img1 standing upright, centered, on a smooth warm bronze background (#c96b2f to #fdf6f0 gradient). Beside the tube, a single perfectly smooth fresh orange peel (to contrast the 'peau d'orange' concept). Strong directional studio lighting. Clean, impactful, editorial. Tube design preserved exactly. Photorealistic, 4K, 1:1."},
+
+{id:"ATK-08",angle:"value",title:"Prix vs résultat",targets:["mariama","fatou","aissatou"],ratio:"1:1",format:"Feed IG/FB",kicker:"Rapport résultat/prix imbattable",headline:"19,90 € POUR EFFACER 23% DE CELLULITE",sub:"Pas 199 €. Pas 99 €. Dix-neuf euros quatre-vingt-dix.",cta:"COMMANDER",prompt:"Bold ad visual. The Lipoxycut tube from @img1 placed at a slight angle on a warm cream surface, center-left. The right 50% of the frame is completely clean, empty cream-to-bronze gradient for a price text overlay later. A small scatter of coffee beans at the tube's base. Soft studio lighting from the left. Premium brand ad. Tube preserved exactly. Photorealistic, 4K, 1:1."},
+
+{id:"ATK-09",angle:"curiosity",title:"Le secret maillot",targets:["mariama","fatou"],ratio:"9:16",format:"Reels",kicker:"Elles ne le diront pas en public",headline:"LE SECRET DES FEMMES QUI OSENT LE MAILLOT",sub:"Pourquoi elles sont si confiantes sur la plage. Indice : ça tient dans un tube.",cta:"DÉCOUVRIR",prompt:"Vertical 9:16 ad. Overhead shot of a woman's beach tote bag open on warm sand, revealing inside: a straw hat, sunglasses, a rolled beige towel, and the Lipoxycut tube from @img1 peeking out clearly visible. Golden hour tropical lighting. Intriguing discovery mood — like peeking into a secret routine. Tube branding sharp. Photorealistic, 4K."},
+
+{id:"ATK-10",angle:"authority",title:"Signature brand",targets:["mariama","fatou","aissatou"],ratio:"1:1",format:"Feed IG",kicker:"La méthode qui marche",headline:"APPLIQUE. SCULPTE. BRÛLE.",sub:"La formule brevetée Eric Favre. Trois gestes. Une silhouette transformée.",cta:"JE COMMENCE",prompt:"Bold cinematic ad visual. The Lipoxycut tube from @img1 centered on a dark warm bronze (#8c4418) background with a single dramatic beam of light hitting it from above-left. Deep shadows around. Minimal composition, high contrast. Premium luxury beauty campaign aesthetic. Tube label fully readable and preserved exactly. Photorealistic, 4K, 1:1."},
+
+{id:"ATK-11",angle:"value",title:"Simplicité ultime",targets:["mariama","aissatou"],ratio:"1:1",format:"Feed IG",kicker:"Zéro complication",headline:"2 APPLICATIONS PAR JOUR. C'EST TOUT.",sub:"Pas de régime drastique. Pas d'abonnement à une app. Juste une crème qui marche.",cta:"JE VEUX SIMPLE",prompt:"Minimalist clean ad. The Lipoxycut tube from @img1 lying horizontally on a soft cream linen fabric, next to a small round analog clock showing morning time and another showing evening time. Soft diffused natural light. Calm, reassuring, editorial minimal. Tube preserved exactly. Photorealistic, 4K, 1:1."},
+
+{id:"ATK-12",angle:"authority",title:"Labo français",targets:["fatou","aissatou"],ratio:"1:1",format:"Feed FB",kicker:"Made in France",headline:"FORMULE BREVETÉE · LABORATOIRE FRANÇAIS",sub:"Eric Favre Nutrition Expert. Depuis 40 ans au service de la performance.",cta:"JE FAIS CONFIANCE",prompt:"Premium trust-building ad visual. The Lipoxycut tube from @img1 displayed on a dark wooden surface with a French-style laboratory aesthetic in the background: blurred glass beakers, a subtle tricolor element, a parchment-style texture. Warm amber directional lighting. Authoritative, scientific-chic mood. Tube design preserved exactly. Photorealistic, 4K, 1:1."},
+
+{id:"ATK-13",angle:"proof",title:"Avant/Après 28j",targets:["mariama","fatou","aissatou"],ratio:"1:1",format:"Feed IG/FB",kicker:"Résultats documentés",headline:"AVANT / APRÈS 28 JOURS",sub:"Les chiffres parlent : -23% de capitons, peau lisse confirmée.",cta:"VOIR LA PREUVE",prompt:"Clean 50/50 split ad visual. Left half labeled subtly 'JOUR 1': realistic close-up of a Black woman's thigh with subtle dimpled skin, cool flat lighting. Right half labeled 'JOUR 28': the same thigh smooth, even, warm golden lighting. A small Lipoxycut tube from @img1 icon placed at the bottom center, straddling the divide. Realistic transformation, not exaggerated. Tube preserved exactly. Photorealistic, 4K, 1:1."},
+
+{id:"ATK-14",angle:"value",title:"Routine 2 min",targets:["mariama","fatou"],ratio:"9:16",format:"Story/Reels",kicker:"La plus petite habitude",headline:"TA NOUVELLE ROUTINE DE 2 MINUTES",
+sub:"Plus court qu'un épisode TikTok. Plus efficace qu'une heure de salle.",cta:"JE VEUX ESSAYER",prompt:"Vertical Reels-style ad. A young Black woman's hand squeezing cream from the Lipoxycut tube @img1 onto the back of her other hand, close-up, over a cream fabric surface. Behind, slightly blurred, a smartphone on a ring light shows a timer reading 02:00. Intimate bedroom lighting, warm. Captures the TikTok routine vibe. Tube preserved exactly. Photorealistic, 4K, 9:16."},
+
+{id:"ATK-15",angle:"social",title:"Celles qui ont arrêté",targets:["fatou","aissatou"],ratio:"1:1",format:"Feed FB",kicker:"Comparaison directe",headline:"ELLES ONT ARRÊTÉ LES RÉGIMES FRUSTRANTS",sub:"Parce que ce tube fait le travail ciblé que les régimes ne font jamais.",cta:"REJOINDRE",prompt:"Lifestyle ad portrait. Three Black women of different ages (25, 35, 45) sitting together at a bright café table, smiling, sharing a moment of complicity. On the table in front of them, prominently placed, the Lipoxycut tube from @img1 is clearly visible next to coffees and a notebook. Warm natural afternoon lighting. Authentic sisterhood mood. Tube preserved exactly. Photorealistic, 4K, 1:1."},
+
+{id:"ATK-16",angle:"value",title:"Un tube 2 mois",targets:["mariama","fatou","aissatou"],ratio:"1:1",format:"Feed IG",kicker:"Le calcul simple",headline:"1 TUBE · 2 MOIS · 1 NOUVELLE SILHOUETTE",sub:"150 ml = 60 jours de routine = 0,33 € par jour. Cherche pas plus loin.",cta:"COMMANDER",prompt:"Clean pricing-focused ad visual. The Lipoxycut tube from @img1 standing upright on a warm cream surface, center of frame. Around the base, arranged in a circle, 60 small bronze coins or small wooden tokens symbolizing each day. Soft overhead lighting. Minimalist and educational. Tube preserved exactly. Photorealistic, 4K, 1:1."},
+
+{id:"ATK-17",angle:"urgency",title:"4 semaines maillot",targets:["mariama","fatou"],ratio:"9:16",format:"Story/Reels",kicker:"Compte à rebours",headline:"DANS 4 SEMAINES, TU POSTES LE MAILLOT",sub:"Commence aujourd'hui. Ta prochaine photo plage te dira merci.",cta:"JE SAUTE LE PAS",prompt:"Vertical 9:16 ad. Overhead flat lay on warm sand: a bronze swimsuit neatly folded, a pair of trendy sunglasses, a calendar page marked 4 SEMAINES circled, and the Lipoxycut tube from @img1 placed diagonally. Scattered shells and dried hibiscus. Golden hour beach lighting. Aspirational summer prep. Tube preserved exactly. Photorealistic, 4K, 9:16."},
+
+{id:"ATK-18",angle:"authority",title:"Trust stack",targets:["fatou","aissatou"],ratio:"1:1",format:"Feed FB",kicker:"Tout ce qu'il faut savoir",headline:"BREVETÉ · CLINIQUEMENT PROUVÉ · 19,90 €",sub:"Trois arguments. Zéro compromis. La crème qui tient ses promesses.",cta:"JE COMMANDE",prompt:"Premium authoritative ad visual. The Lipoxycut tube from @img1 standing centered on a dark polished marble surface, with a single strong spotlight from above-left creating dramatic shadows. Subtle reflection on the marble. Behind the tube, a very blurred cream background. Luxury pharmaceutical beauty ad feel. Tube design preserved exactly. Photorealistic, 4K, 1:1."},
+
+{id:"ATK-19",angle:"pain",title:"Jours comptés",targets:["mariama","fatou","aissatou"],ratio:"1:1",format:"Feed IG",kicker:"Attaque ciblée",headline:"TES CAPITONS ONT LEURS JOURS COMPTÉS",sub:"Caféine concentrée + massage ciblé = résultats visibles en 7 jours.",cta:"JE PASSE À L'ACTION",prompt:"Dynamic bold ad visual. The Lipoxycut tube from @img1 placed at a dramatic diagonal angle on a dark bronze (#8c4418) surface. Around the tube, a few coffee beans scattered with motion blur as if falling. Strong rim light from the side creating high contrast. Aggressive direct-response aesthetic. Tube branding sharp and preserved exactly. Photorealistic, 4K, 1:1."},
+
+{id:"ATK-20",angle:"curiosity",title:"Caféine intelligente",targets:["mariama","fatou"],ratio:"1:1",format:"Feed IG",kicker:"Un actif que tu connais déjà",headline:"LA CAFÉINE DE TA CRÈME FAIT CE QUE TON CAFÉ NE FAIT PAS",sub:"Appliquée sur la peau, elle cible directement les capitons. Malin.",cta:"C'EST VRAI ?",prompt:"Playful editorial ad visual. Split composition. Left half: a white ceramic espresso cup of coffee with steam rising, on a cream saucer. Right half: the Lipoxycut tube from @img1 on the same cream surface, with scattered coffee beans connecting the two halves. Both halves warmly lit, unified cream background. Clever, smart, witty mood. Tube preserved exactly. Photorealistic, 4K, 1:1."},
+
+{id:"ATK-21",angle:"social",title:"Sans changer routine",targets:["mariama","aissatou"],ratio:"1:1",format:"Feed FB",kicker:"Preuve utilisatrice",headline:"-23% DE CAPITONS SANS CHANGER SA ROUTINE",sub:"Juste 2 minutes en plus matin et soir. Le reste de sa vie reste le même.",cta:"TESTER",prompt:"Lifestyle testimonial ad. A Black woman in her mid-30s sitting casually on a kitchen stool in her home, holding a coffee mug, smiling warmly at the camera. On the counter beside her, clearly visible, the Lipoxycut tube from @img1. Her outfit is casual everyday wear. Warm natural morning light. Authentic real-person feel, not a model. Tube preserved exactly. Photorealistic, 4K, 1:1."},
+
+{id:"ATK-22",angle:"social",title:"Complément sport",targets:["mariama","fatou"],ratio:"1:1",format:"Feed IG",kicker:"L'allié de ton effort",headline:"L'ALLIÉE QUE TON SPORT ATTENDAIT",sub:"Le sport tonifie. Lipoxycut cible les capitons. Ensemble, tout change.",cta:"MA ROUTINE COMPLÈTE",prompt:"Sporty lifestyle ad visual. A young Black woman in neutral-tone activewear sitting on a yoga mat in a bright modern studio, a water bottle beside her. She holds the Lipoxycut tube from @img1 casually in one hand, smiling with satisfaction. Soft afternoon light from floor-to-ceiling windows. Post-workout serenity mood. Tube preserved exactly. Photorealistic, 4K, 1:1."},
+
+{id:"ATK-23",angle:"proof",title:"Méthode massage",targets:["fatou","aissatou"],ratio:"1:1",format:"Feed FB",kicker:"Le geste qui amplifie",headline:"MASSAGE + CRÈME = RÉSULTATS PROUVÉS",sub:"La méthode clinique testée. 2 minutes par zone, 2 fois par jour.",cta:"VOIR LA MÉTHODE",prompt:"Educational ad visual. Close-up of an elegant feminine hand performing a circular massage motion on a smooth thigh, with a small amount of white cream visible. The Lipoxycut tube from @img1 placed prominently beside in focus, on a warm cream surface. Clean, educational, intimate. Soft directional light from above-left. Tube preserved exactly. Photorealistic, 4K, 1:1."},
+
+{id:"ATK-24",angle:"value",title:"4 zones 1 crème",targets:["mariama","fatou","aissatou"],ratio:"1:1",format:"Feed IG",kicker:"Une solution, partout",headline:"CUISSES · FESSES · VENTRE · HANCHES",sub:"Une seule crème pour les 4 zones qui comptent. 150 ml, 2 mois de routine.",cta:"JE ME LANCE",prompt:"Clean infographic-style ad visual. The Lipoxycut tube from @img1 centered on a soft cream surface. Four subtle silhouette icons arranged around the tube in the four corners of the frame, each representing a body zone (thigh, hip, stomach, buttocks) in elegant bronze line art. Overhead flat lay, minimal, educational. Tube preserved exactly. Photorealistic, 4K, 1:1."},
+
+{id:"ATK-25",angle:"urgency",title:"Stocks limités",targets:["mariama","fatou","aissatou"],ratio:"9:16",format:"Story",kicker:"Rupture imminente",headline:"DERNIERS STOCKS — NE RATE PAS",sub:"Produit star. Stocks limités. Les indécises vont encore attendre l'an prochain.",cta:"COMMANDER VITE",prompt:"Urgent ad visual, vertical 9:16. The Lipoxycut tube from @img1 placed on a warm bronze surface with a subtle red tint. In the background, a blurred digital counter glowing red. Dramatic side lighting. Tension, urgency, fomo mood. Tube sharp and preserved exactly. Photorealistic, 4K, 9:16."},
+
+{id:"ATK-26",angle:"pain",title:"Call-out direct",targets:["fatou","aissatou"],ratio:"1:1",format:"Feed FB",kicker:"Pour toi, oui toi",headline:"POUR CELLES QUI EN ONT ASSEZ DE LA PEAU D'ORANGE",sub:"Si tu lis ça, tu sais pourquoi. Il est temps que ça change.",cta:"JE REPRENDS LE CONTRÔLE",prompt:"Emotional ad visual. Black woman in her late 30s looking directly at the camera with a determined, self-assured expression. She is in a softly lit bedroom, wearing a cream robe. She holds the Lipoxycut tube from @img1 in both hands at chest level, as if she just made a decision. Warm side lighting. Empowering, resolved mood. Tube preserved exactly. Photorealistic, 4K, 1:1."},
+
+{id:"ATK-27",angle:"pain",title:"Objection collante",targets:["mariama","fatou","aissatou"],ratio:"1:1",format:"Feed IG",kicker:"Zéro galère",headline:"NON COLLANTE. TU T'HABILLES DIRECT.",sub:"Absorption rapide. Parfum discret. Aucune contrainte. Fini les crèmes qui tachent.",cta:"TESTER",prompt:"Dynamic ad visual. A young Black woman fully dressed in a stylish beige outfit (blazer and pants) walking confidently out of a bright bedroom. Behind her, on a dresser, the Lipoxycut tube from @img1 is visible. She looks like she just finished her routine and is ready for her day. Natural morning light. Motion-filled, fast-paced ready-in-minutes vibe. Tube preserved exactly. Photorealistic, 4K, 1:1."},
+
+{id:"ATK-28",angle:"proof",title:"Blunt direct",targets:["mariama","fatou","aissatou"],ratio:"1:1",format:"Feed IG",kicker:"Sans détour",headline:"-23% DE CAPITONS. PROUVÉ. POINT.",sub:"Pas de promesse marketing. Une étude clinique. Un chiffre. Une formule qui tient.",cta:"JE VEUX LA PREUVE",prompt:"Minimal bold ad visual. The Lipoxycut tube from @img1 centered on a solid dark bronze (#8c4418) background. Single strong spotlight from top. Heavy shadow below. High-contrast, cinematic, editorial beauty ad. Nothing else in frame. Tube label fully readable and preserved exactly. Photorealistic, 4K, 1:1."},
+
+{id:"ATK-29",angle:"pain",title:"Attaque concurrence",targets:["fatou","aissatou"],ratio:"1:1",format:"Feed FB",kicker:"On sait que tu as déjà essayé",headline:"TA CRÈME ACTUELLE NE FAIT PAS LE TRAVAIL",sub:"Sinon tu ne lirais pas ça. Essaie une formule brevetée et cliniquement prouvée.",cta:"JE CHANGE",prompt:"Bold ad visual. The Lipoxycut tube from @img1 standing prominently on a warm bronze surface, sharp and in full focus. In the far background, several blurred generic white cosmetic tubes arranged behind, clearly out of focus and unremarkable. The hierarchy makes the Lipoxycut tube the obvious hero. Strong directional lighting from the left. Tube preserved exactly. Photorealistic, 4K, 1:1."},
+
+{id:"ATK-30",angle:"curiosity",title:"Nostalgie silhouette",targets:["aissatou","fatou"],ratio:"1:1",format:"Feed FB",kicker:"Ton corps se souvient",headline:"RETROUVE LA SILHOUETTE QUE TU AIMAIS",sub:"Les capitons ne sont pas une fatalité. Ils partent avec la bonne formule.",cta:"C'EST POSSIBLE",prompt:"Emotional lifestyle ad visual. A Black woman in her 40s looking at an old polaroid photo (blurred in her hand) with a gentle nostalgic smile. She is sitting in a warm home interior, wearing comfortable loungewear. On the coffee table beside her, the Lipoxycut tube from @img1 is clearly visible. Warm afternoon light. Emotional, hopeful, self-love mood. Tube preserved exactly. Photorealistic, 4K, 1:1."}
+
+];
+
+const ANGLES=[
+  {key:"all",label:"Toutes (30)",hot:false},
+  {key:"urgency",label:"🔥 Urgence",hot:true},
+  {key:"proof",label:"✅ Preuve",hot:false},
+  {key:"pain",label:"⚡ Pain point",hot:true},
+  {key:"social",label:"👥 Social",hot:false},
+  {key:"value",label:"💰 Valeur",hot:false},
+  {key:"curiosity",label:"🧲 Curiosité",hot:false},
+  {key:"authority",label:"🏛 Autorité",hot:false},
+  {key:"mariama",label:"Mariama 22-28",hot:false},
+  {key:"fatou",label:"Fatou 30-38",hot:false},
+  {key:"aissatou",label:"Aissatou 40+",hot:false}
+];
+
+let activeFilter="all";
+
+function el(tag,cls,text){
+  const e=document.createElement(tag);
+  if(cls) e.className=cls;
+  if(text!=null) e.textContent=text;
+  return e;
+}
+
+function renderFilters(){
+  const bar=document.getElementById("filtersBar");
+  bar.textContent="";
+  ANGLES.forEach(a=>{
+    const b=el("button","f-btn"+(a.hot?" hot":"")+(a.key===activeFilter?" on":""),a.label);
+    b.dataset.filter=a.key;
+    b.addEventListener("click",()=>{activeFilter=a.key;renderFilters();renderGrid();});
+    bar.appendChild(b);
+  });
+}
+
+function matchFilter(c){
+  if(activeFilter==="all")return true;
+  if(["mariama","fatou","aissatou"].includes(activeFilter))return c.targets.includes(activeFilter);
+  return c.angle===activeFilter;
+}
+
+function buildPromptNodes(text){
+  const frag=document.createDocumentFragment();
+  const parts=text.split(/(@img\d+)/g);
+  parts.forEach(part=>{
+    if(/^@img\d+$/.test(part)){
+      frag.appendChild(el("span","img-tag",part));
+    }else if(part){
+      frag.appendChild(document.createTextNode(part));
+    }
+  });
+  return frag;
+}
+
+async function copyText(text,btn,doneLabel){
+  try{
+    await navigator.clipboard.writeText(text);
+    const orig=btn.textContent;
+    btn.classList.add("copied");
+    btn.textContent=doneLabel;
+    setTimeout(()=>{btn.classList.remove("copied");btn.textContent=orig;},1600);
+  }catch(err){alert("Impossible de copier");}
+}
+
+function renderGrid(){
+  const grid=document.getElementById("grid");
+  grid.textContent="";
+  const filtered=CREAS.filter(matchFilter);
+  document.getElementById("countDisplay").textContent=filtered.length+" créas";
+
+  filtered.forEach(c=>{
+    const card=el("div","card");
+
+    // HEAD
+    const head=el("div","card-head");
+    const left=el("div");
+    const idRow=el("div","id-row");
+    idRow.appendChild(el("span","id-label",c.id));
+    idRow.appendChild(el("span","tag tag-angle-"+c.angle,c.angle));
+    left.appendChild(idRow);
+    left.appendChild(el("div","title",c.title));
+    head.appendChild(left);
+    const tags=el("div","tags");
+    c.targets.forEach(t=>tags.appendChild(el("span","tag tag-"+t,t)));
+    head.appendChild(tags);
+    card.appendChild(head);
+
+    // HEADLINE ZONE
+    const hz=el("div","headline-zone");
+    const copyH=el("button","copy-head","📋 Headline");
+    const fullHeadline=c.headline+"\n\n"+c.sub+"\n\n"+c.cta;
+    copyH.addEventListener("click",(e)=>{e.stopPropagation();copyText(fullHeadline,copyH,"✓ Copié");});
+    hz.appendChild(copyH);
+    hz.appendChild(el("div","kicker",c.kicker));
+    hz.appendChild(el("div","headline",c.headline));
+    hz.appendChild(el("div","sub",c.sub));
+    hz.appendChild(el("span","cta",c.cta));
+    card.appendChild(hz);
+
+    // PROMPT ZONE
+    const pa=el("div","prompt-area");
+    pa.appendChild(el("div","prompt-label","🍌 PROMPT NANO BANANA"));
+    const copyP=el("button","copy-prompt","📋 Prompt");
+    copyP.addEventListener("click",(e)=>{e.stopPropagation();copyText(c.prompt,copyP,"✓ Copié");});
+    pa.appendChild(copyP);
+    const pt=el("div","prompt-text");
+    pt.appendChild(buildPromptNodes(c.prompt));
+    pa.appendChild(pt);
+    card.appendChild(pa);
+
+    // SPECS
+    const specs=el("div","specs");
+    const addSpec=(k,v)=>{const s=el("div","spec");s.appendChild(el("span","k",k+":"));s.appendChild(el("span","v",v));specs.appendChild(s);};
+    addSpec("Format",c.format);
+    addSpec("Ratio",c.ratio);
+    card.appendChild(specs);
+
+    grid.appendChild(card);
+  });
+}
+
+document.getElementById("exportBtn").addEventListener("click",()=>{
+  const blob=new Blob([JSON.stringify(CREAS,null,2)],{type:"application/json"});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement("a");
+  a.href=url;a.download="lipoxycut-ads-offensives.json";a.click();
+  URL.revokeObjectURL(url);
+});
+
+renderFilters();
+renderGrid();
+</script>
+</body>
+</html>

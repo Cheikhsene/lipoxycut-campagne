@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Briefs Nano Banana — Lipoxycut Crème Sculpt &amp; Burn</title>
+<style>
+:root{
+  --bronze:#c96b2f;--bronze-soft:#e89560;--bronze-pale:#f7dcc7;--bronze-bg:#fdf6f0;
+  --text:#1f1912;--text-mid:#5a4a3a;--text-soft:#9a8a78;
+  --green:#3a8a55;--blue:#3b82f6;--purple:#8b5cf6;
+  --border:#ede3d7;--bg:#fbf8f4;--white:#fff
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,Segoe UI,sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;line-height:1.5}
+.topbar{background:var(--text);color:var(--bronze-pale);padding:14px 28px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:100;box-shadow:0 2px 10px rgba(0,0,0,.08)}
+.topbar h1{font-size:15px;font-weight:800;color:#fff;letter-spacing:.2px}
+.topbar h1 span{color:var(--bronze-soft)}
+.topbar .count{font-size:12px;font-weight:700;background:var(--bronze);color:#fff;padding:6px 14px;border-radius:50px}
+
+.intro{background:linear-gradient(135deg,var(--bronze-bg),#fff);padding:24px 28px;border-bottom:1px solid var(--border)}
+.intro h2{font-size:18px;margin-bottom:10px;color:var(--text)}
+.intro p{font-size:13px;color:var(--text-mid);max-width:920px;margin-bottom:6px}
+.intro b{color:var(--bronze)}
+.intro .refs{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.intro .refs .chip{background:#fff;border:1px solid var(--border);padding:6px 12px;border-radius:50px;font-size:11px;font-weight:700;color:var(--text-mid)}
+.intro .refs .chip b{color:var(--bronze)}
+
+.filters{background:var(--white);border-bottom:1px solid var(--border);padding:14px 28px;display:flex;gap:8px;flex-wrap:wrap;position:sticky;top:50px;z-index:99}
+.f-btn{padding:8px 16px;border-radius:50px;border:1.5px solid var(--border);background:var(--white);font-family:inherit;font-size:12px;font-weight:700;color:var(--text-mid);cursor:pointer;transition:.15s}
+.f-btn:hover{border-color:var(--bronze-soft);color:var(--text)}
+.f-btn.on{background:var(--bronze);color:#fff;border-color:var(--bronze)}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(420px,1fr));gap:18px;padding:22px 28px 100px}
+.card{background:var(--white);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:.2s;display:flex;flex-direction:column}
+.card:hover{box-shadow:0 8px 28px rgba(201,107,47,.12);transform:translateY(-2px)}
+.card-head{padding:16px 20px 12px;border-bottom:1px solid var(--border)}
+.card-head .row{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:6px}
+.card-head .title{font-size:14px;font-weight:800;line-height:1.3;color:var(--text)}
+.card-head .id-label{font-size:10px;color:var(--bronze);font-weight:800;letter-spacing:.5px;margin-top:4px;text-transform:uppercase}
+.tags{display:flex;gap:4px;flex-wrap:wrap}
+.tag{font-size:9px;font-weight:800;padding:4px 9px;border-radius:50px;white-space:nowrap;text-transform:uppercase;letter-spacing:.3px}
+.tag-section{background:var(--bronze-pale);color:var(--bronze)}
+.tag-mariama{background:#dbeafe;color:#2563eb}
+.tag-fatou{background:#fce7f3;color:#db2777}
+.tag-aissatou{background:#fef3c7;color:#d97706}
+.tag-tube{background:#e0e7ff;color:#4f46e5}
+.tag-hero{background:#dcfce7;color:#16a34a}
+
+.prompt-area{padding:14px 20px;background:#fafaf7;border-bottom:1px solid var(--border);position:relative;flex:1}
+.prompt-text{font-size:12.5px;line-height:1.75;color:var(--text);white-space:pre-wrap;word-break:break-word;padding-right:70px}
+.img-tag{background:var(--bronze);color:#fff;padding:2px 7px;border-radius:4px;font-weight:800;font-size:11px;display:inline-block;margin:0 1px}
+.copy-btn{position:absolute;top:12px;right:12px;background:var(--text);color:#fff;border:none;border-radius:6px;padding:7px 13px;font-family:inherit;font-size:10px;font-weight:800;cursor:pointer;transition:.15s;opacity:.75}
+.copy-btn:hover{opacity:1;transform:scale(1.03)}
+.copy-btn.copied{background:var(--green);opacity:1}
+
+.specs{padding:12px 20px 16px;display:grid;grid-template-columns:1fr 1fr;gap:6px 18px}
+.spec{display:flex;justify-content:space-between;font-size:10.5px;padding:2px 0}
+.spec .k{color:var(--text-soft);font-weight:600}
+.spec .v{font-weight:800;color:var(--text);text-align:right}
+
+.export-bar{position:fixed;bottom:0;left:0;right:0;background:var(--white);border-top:1px solid var(--border);padding:14px 28px;display:flex;justify-content:space-between;align-items:center;z-index:100;box-shadow:0 -4px 16px rgba(0,0,0,.05)}
+.export-bar .info-text{font-size:12px;color:var(--text-soft)}
+.export-bar .info-text b{color:var(--text)}
+.btn-export{padding:11px 26px;border-radius:8px;border:none;font-family:inherit;font-size:12px;font-weight:800;cursor:pointer;background:var(--bronze);color:#fff;letter-spacing:.3px}
+.btn-export:hover{background:#b05620}
+
+@media(max-width:800px){.grid{grid-template-columns:1fr;padding:16px}.specs{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <h1>Briefs <span>Nano Banana</span> — Lipoxycut Crème Sculpt &amp; Burn</h1>
+  <div class="count" id="countDisplay">0 briefs</div>
+</div>
+
+<div class="intro">
+  <h2>🍌 Campagne Lipoxycut — Brief créatif Nano Banana (Gemini 2.5 Flash Image)</h2>
+  <p>Remplacement de la campagne <b>AbdoSlim Gel</b> (rupture imminente). Cible bascule <b>hommes 25-44 → femmes 25-44</b>. Ce document contient les prompts prêts à coller dans Nano Banana / Gemini pour générer les visuels hero, galerie, lifestyle et ads.</p>
+  <p><b>Méthode Nano Banana</b> : prompts en langage naturel, descriptifs, jamais de soupe de keywords. Fournir les images de référence via upload (@img1, @img2...). Pour éditer, dire « en gardant X, modifie Y ». Demander « photorealistic, 4K » en fin de prompt.</p>
+  <div class="refs">
+    <div class="chip"><b>@img1</b> packshot-main.png (tube hero)</div>
+    <div class="chip"><b>@img2</b> 6758.jpg</div>
+    <div class="chip"><b>@img3</b> 6759.jpg</div>
+    <div class="chip"><b>@img4</b> 6760.jpg</div>
+    <div class="chip"><b>@img5</b> 6761.jpg</div>
+    <div class="chip">Promesse clé : <b>-23 % capitons</b></div>
+    <div class="chip">Preuve : <b>100 % peau lisse</b></div>
+    <div class="chip">Prix : <b>19,90 €</b></div>
+  </div>
+</div>
+
+<div class="filters" id="filtersBar"></div>
+<div class="grid" id="grid"></div>
+
+<div class="export-bar">
+  <div class="info-text">Clique sur un filtre pour cibler. <b>Clic sur le bouton Copier = copie le prompt</b> dans le presse-papier.</div>
+  <button class="btn-export" id="exportBtn">Exporter tout en JSON</button>
+</div>
+
+<script>
+const PROMPTS = [
+
+// HERO
+{id:"HERO-01",title:"Hero desktop — Packshot sur sable tropical bronze",section:"hero",targets:["fatou","mariama","aissatou"],product_ref:"tube",prompt:"Premium product photography of the Lipoxycut Crème Sculpt & Burn tube from @img1, placed upright on warm golden sand. Soft directional studio lighting from the top-right creating a long elegant shadow. Background is a smooth gradient from deep bronze (#c96b2f) to pale cream (#fdf6f0). A few dried hibiscus petals scattered around the base of the tube. Sculpting light highlights the curves of the packaging. The tube label and Eric Favre branding must remain perfectly sharp and readable. Luxury beauty editorial feel, photorealistic, 4K.",specs:{ratio:"16:9",usage:"Hero page produit desktop",style:"Editorial beauty",bg:"Bronze to cream",lighting:"Studio top-right"}},
+
+{id:"HERO-02",title:"Hero mobile — Tube tenu par main féminine",section:"hero",targets:["fatou","mariama","aissatou"],product_ref:"tube",prompt:"Vertical hero shot of a graceful Black woman's hand holding the Lipoxycut tube from @img1 at chest level, tube angled towards the camera so the label is fully readable. Her nails are natural, short, and glossy. She wears a single thin gold bracelet. The rest of the woman is out of frame. Background is a soft warm bronze (#e89560) gradient fading to cream. The packaging stays crisp and perfectly preserved — do not alter the tube text or colors. Shallow depth of field, f/2.0, soft morning light. Photorealistic, 4K.",specs:{ratio:"9:16",usage:"Hero mobile / Story / Reels",style:"Portrait hand",bg:"Bronze gradient",lighting:"Soft morning"}},
+
+{id:"HERO-03",title:"Hero banner wide — Tube + ingrédients flat lay",section:"hero",targets:["fatou"],product_ref:"tube",prompt:"Overhead flat lay shot. Place the Lipoxycut tube from @img1 horizontally centered on a textured linen fabric the color of unbleached cotton. Around the tube arrange: a small ceramic dish of coffee beans, a glass bottle of golden oil, a few fresh orange slices, a sprig of eucalyptus, and a wooden massage roller. Composition must feel editorial and symmetrical. The tube branding stays sharp — do not modify the packaging. Soft natural daylight from above, gentle shadows. Minimalist wellness magazine aesthetic. Photorealistic, 4K, 21:9 crop.",specs:{ratio:"21:9",usage:"Hero banner desktop wide",style:"Flat lay editorial",bg:"Linen cotton",lighting:"Natural overhead"}},
+
+// GALERIE
+{id:"GAL-01",title:"Galerie — Packshot 3/4 studio neutre",section:"gallery",targets:["fatou","mariama","aissatou"],product_ref:"tube",prompt:"Clean 3/4 angle e-commerce packshot of the Lipoxycut tube from @img1, placed on a seamless off-white (#f7f3ed) studio background. The tube stands upright, the cap is closed, the front label is fully visible with all text readable. Soft even studio lighting, no harsh shadows, subtle natural reflection on the surface beneath. Keep the tube design, colors and text 100% identical to the reference — this is a faithful product shot, not a creative reinterpretation. Sharp focus, photorealistic, 4K, white-balanced.",specs:{ratio:"1:1",usage:"Galerie image 1 (principale)",style:"E-commerce packshot",bg:"Off-white seamless",lighting:"Studio even"}},
+
+{id:"GAL-02",title:"Galerie — Tube couché avec texture crème",section:"gallery",targets:["fatou","mariama","aissatou"],product_ref:"tube",prompt:"Macro product shot of the Lipoxycut tube from @img1 lying horizontally on a marble surface with warm bronze veins. Next to the tube, a small dollop of rich white cream has been squeezed out, showing its silky texture catching the light. A few beads of cream visible on the marble. Preserve the tube design exactly. Warm studio lighting from the left, soft shadows. Premium cosmetic photography style. Photorealistic, 4K.",specs:{ratio:"1:1",usage:"Galerie image 2 (texture)",style:"Texture macro",bg:"Bronze marble",lighting:"Warm side"}},
+
+{id:"GAL-03",title:"Galerie — Application sur cuisse femme",section:"gallery",targets:["mariama","fatou"],product_ref:"tube",prompt:"Close-up shot of a young Black woman's toned thigh as she massages a small amount of white cream onto her skin in a gentle circular motion. Her hand is elegant, natural nails. In the background, slightly out of focus, the Lipoxycut tube from @img1 rests on a bathroom marble counter — the tube must remain recognizable and sharp enough to identify the brand. She wears a white bath towel around her waist. Bright morning bathroom lighting. Skincare ritual aesthetic, intimate and clean, not sensual. Photorealistic, 4K.",specs:{ratio:"1:1",usage:"Galerie image 3 (application)",style:"Ritual application",bg:"Bathroom marble",lighting:"Morning bright"}},
+
+{id:"GAL-04",title:"Galerie — Lot de 2 tubes duo pack",section:"gallery",targets:["fatou","mariama","aissatou"],product_ref:"tube",prompt:"Product composition showing two Lipoxycut tubes from @img1 stacked and arranged at slight angles on a soft cream linen surface. A paper wrap ribbon in bronze color wraps them together, suggesting the 'Lot de 2' duo pack. Small dried flower accents. Soft diffused natural light from above-left. Premium gift-ready product photography. Keep the tube designs 100% identical to the reference. Photorealistic, 4K, 1:1 square.",specs:{ratio:"1:1",usage:"Galerie image 4 (duo pack)",style:"Duo pack gifting",bg:"Cream linen",lighting:"Diffused natural"}},
+
+// BÉNÉFICES
+{id:"BEN-01",title:"Bénéfice — Peau lisse zoom jambe",section:"benefits",targets:["fatou","mariama","aissatou"],product_ref:"none",prompt:"Extreme close-up beauty shot of the smooth, toned upper thigh skin of a young Black woman. The skin is hydrated, even, glowing, and completely smooth — no visible cellulite or capitons. Small water droplets catch the light. Background is a soft bronze gradient (#e89560 to #fdf6f0), slightly blurred. Shallow depth of field. No product in frame. Beauty campaign quality, respectful and editorial, not sexualized. Studio softbox lighting. Photorealistic, 4K.",specs:{ratio:"4:3",usage:"Section bénéfice peau lisse",style:"Beauty macro skin",bg:"Bronze gradient",lighting:"Softbox studio"}},
+
+{id:"BEN-02",title:"Bénéfice — Avant / Après capitons split",section:"benefits",targets:["mariama","fatou"],product_ref:"tube",prompt:"Clean 50/50 split visual for a before/after comparison. Left half: close-up of a Black woman's thigh with visibly dimpled skin texture (subtle, realistic, not exaggerated), cool flat gray lighting. Right half: same thigh but smooth, toned and even, with warm golden lighting. A thin vertical bronze line separates the two halves. Small Lipoxycut tube icon from @img1 placed discreetly in the bottom-right of the After side. Realistic transformation, believable. Photorealistic, 4K, 1:1 square.",specs:{ratio:"1:1",usage:"Section preuve avant/après",style:"Before/after split",bg:"Gray vs Warm",lighting:"Flat vs Golden"}},
+
+{id:"BEN-03",title:"Bénéfice — 23% diminution zone texte",section:"benefits",targets:["fatou","aissatou"],product_ref:"tube",prompt:"Infographic-style beauty image. The Lipoxycut tube from @img1 is placed vertically on the left third of the frame on a soft bronze surface. On the right two-thirds of the frame, leave the space completely clean and uncluttered so text can be overlaid later — the right side must be a smooth gradient from cream to bronze, no elements. A few scattered coffee beans at the base of the tube (referencing caffeine, the active ingredient). Tube branding preserved exactly. Clean, educational, premium. Soft studio lighting. Photorealistic, 4K.",specs:{ratio:"16:9",usage:"Section chiffres clés",style:"Infographic clean",bg:"Cream to bronze",lighting:"Soft studio"}},
+
+{id:"BEN-04",title:"Bénéfice — Texture non collante macro",section:"benefits",targets:["fatou","mariama"],product_ref:"none",prompt:"Macro beauty shot of a small swirl of rich white cosmetic cream on the back of a young Black woman's hand. The cream looks silky and velvety, not sticky. Her skin catches a soft highlight. In the far background, blurred, the Lipoxycut tube from @img1 is just recognizable on a cream surface. Extreme close-up, shallow depth of field f/1.8, side-key lighting. Premium cosmetic texture photography. Photorealistic, 4K.",specs:{ratio:"4:5",usage:"Section texture",style:"Texture macro",bg:"Cream blur",lighting:"Side key"}},
+
+// MARIAMA
+{id:"MAR-01",title:"Mariama — UGC selfie routine soir",section:"lifestyle",targets:["mariama"],product_ref:"tube",prompt:"Casual mirror selfie of a young Black woman (24 years old) in a bright, colorful bedroom. She is smiling warmly, holding up the Lipoxycut tube from @img1 so the camera can read the label. She wears a cropped white tank and comfortable loungewear. The room has fairy lights, a few plants, and a trendy unmade bed in the background. The framing is slightly imperfect on purpose — this is authentic UGC, not a fashion shoot. Her phone is visible in the mirror reflection. Natural daylight. Keep the tube design identical to reference. Photorealistic, 4K, 9:16 vertical.",specs:{ratio:"9:16",usage:"Lifestyle Mariama TikTok/Reels",style:"UGC authentic",bg:"Colorful bedroom",lighting:"Natural daylight"}},
+
+{id:"MAR-02",title:"Mariama — POV massage cuisse",section:"lifestyle",targets:["mariama"],product_ref:"tube",prompt:"POV (point-of-view) shot from above looking down at a young Black woman's own thighs as she sits on a cream-colored bed in denim shorts. Her hands are massaging white cream onto her left thigh in small circles. The Lipoxycut tube from @img1 is open and lying on the bed beside her right leg, clearly branded. The composition feels like she is filming her own evening ritual for TikTok. Cozy room with a plant in the corner. Soft warm lamp light. Intimate, authentic, never sexualized. Photorealistic, 4K, 9:16 vertical.",specs:{ratio:"9:16",usage:"Ad TikTok POV",style:"POV satisfying",bg:"Cream bed",lighting:"Warm lamp"}},
+
+{id:"MAR-03",title:"Mariama — Plage sourire confiance",section:"lifestyle",targets:["mariama"],product_ref:"none",prompt:"Beautiful young Black woman (23 years old) walking confidently on a tropical beach at golden hour, wearing a simple one-piece bronze swimsuit. Her legs are toned, skin glowing and even. She looks relaxed and self-assured, smiling at someone off-camera. Warm orange sunset light bouncing off the ocean behind her. Shallow depth of field. No product in frame. Aspirational summer body-confidence mood. Respectful, empowering, never objectifying. Photorealistic, 4K, 4:5 vertical.",specs:{ratio:"4:5",usage:"Ad lifestyle body confidence",style:"Beach empowerment",bg:"Tropical beach",lighting:"Golden hour"}},
+
+{id:"MAR-04",title:"Mariama — Gym fitness post-workout",section:"lifestyle",targets:["mariama"],product_ref:"tube",prompt:"Young Black woman (25 years old) sitting on a yoga mat in a modern bright gym studio after her workout. She wears a matching sports bra and leggings set in neutral tones. She is applying Lipoxycut cream from the tube @img1 onto her calves, smiling. A water bottle and small gym towel beside her. Floor-to-ceiling windows let in soft afternoon light. The tube branding stays readable and identical to reference. Active lifestyle, post-workout ritual. Photorealistic, 4K.",specs:{ratio:"4:5",usage:"Lifestyle sport Mariama",style:"Post-workout ritual",bg:"Modern gym",lighting:"Window afternoon"}},
+
+// FATOU
+{id:"FAT-01",title:"Fatou — Salle de bain marbre matin",section:"lifestyle",targets:["fatou"],product_ref:"tube",prompt:"Elegant Black woman (early 30s) standing in a luxurious marble bathroom, wearing a cream silk robe. She is gently massaging Lipoxycut cream onto her thigh, standing in front of a large round gold-framed mirror. The Lipoxycut tube from @img1 rests on the marble counter beside a small ceramic dish and a white orchid. Morning golden light streams through tall windows. Premium lifestyle editorial, Kinfolk magazine aesthetic. Keep the tube design exact. Photorealistic, 4K.",specs:{ratio:"4:5",usage:"Lifestyle Fatou IG feed",style:"Premium ritual",bg:"Marble bathroom",lighting:"Golden morning"}},
+
+{id:"FAT-02",title:"Fatou — Shelfie beauty vanity",section:"lifestyle",targets:["fatou"],product_ref:"tube",prompt:"Overhead shelfie composition of a luxurious bathroom vanity. The Lipoxycut tube from @img1 is placed prominently among curated high-end skincare products on a marble shelf: a small amber glass bottle, a jade roller, a cotton pouch, a white orchid in a gold vase. Everything is perfectly arranged and clean. The Lipoxycut tube is the hero of the composition, its label sharp and readable exactly as the reference. Soft warm lighting from the left. Premium beauty editorial flat lay. Photorealistic, 4K, 1:1.",specs:{ratio:"1:1",usage:"IG feed Fatou shelfie",style:"Shelfie editorial",bg:"Marble vanity",lighting:"Warm left"}},
+
+{id:"FAT-03",title:"Fatou — Ad IG portrait tenu produit",section:"ads",targets:["fatou"],product_ref:"tube",prompt:"Portrait of a sophisticated Black woman (early 30s) sitting on a cream velvet armchair in a modern Dakar apartment. She holds the Lipoxycut tube from @img1 casually near her shoulder, label facing the camera. She wears minimalist gold jewelry and a simple cream top. Her skin is glowing. Genuine soft smile, warm and confident. Afternoon light from a large window on the right. Clean left third of the frame for text overlay later. The tube design remains 100% identical to reference. Photorealistic, 4K, 1:1.",specs:{ratio:"1:1",usage:"Ad IG feed Fatou",style:"Portrait testimonial",bg:"Modern apartment",lighting:"Window afternoon"}},
+
+{id:"FAT-04",title:"Fatou — Post-partum douceur intime",section:"lifestyle",targets:["fatou"],product_ref:"tube",prompt:"Tender lifestyle scene of a Black woman in her early 30s sitting on a cream bed in a softly lit bedroom. She is wearing a cozy beige loungewear set. She is applying Lipoxycut cream from the tube @img1 onto her stomach with a gentle self-care gesture, smiling softly to herself. A folded baby blanket and a mug of tea on the nightstand suggest a new-mom context, without showing the baby. Warm morning light. Emotional, intimate, self-love mood. Tube branding preserved exactly. Photorealistic, 4K.",specs:{ratio:"4:5",usage:"Lifestyle post-partum",style:"Self-care intimate",bg:"Cozy bedroom",lighting:"Warm morning"}},
+
+// AISSATOU
+{id:"AIS-01",title:"Aissatou — Salon chaleureux témoignage",section:"lifestyle",targets:["aissatou"],product_ref:"tube",prompt:"Warm portrait of a confident Black woman in her mid-40s, sitting on a comfortable couch in a cozy Senegalese living room. She is smiling gently at the camera, holding the Lipoxycut tube from @img1 in her lap. She wears a beautiful wax-print dress and modest gold jewelry. A framed family photo visible on the wall behind her. Soft afternoon light through sheer curtains on the left. The atmosphere is authentic, trustworthy, maternal, warm. Not a fashion shoot — a real-feeling woman. Keep the tube design identical to reference. Photorealistic, 4K, 1:1.",specs:{ratio:"1:1",usage:"Témoignage Aissatou FB",style:"Warm testimonial",bg:"Cozy living room",lighting:"Afternoon sheer"}},
+
+{id:"AIS-02",title:"Aissatou — Gros plan mains lecture étiquette",section:"lifestyle",targets:["aissatou"],product_ref:"tube",prompt:"Close-up of the hands of a mature Black woman (mid-40s) carefully holding the Lipoxycut tube from @img1 and reading the back label. She wears a simple gold wedding ring. The ERIC FAVRE and Made in France branding is clearly visible and sharp. Background is soft and blurred — a clean home environment. The image conveys trust, careful consideration, quality, reassurance. Warm, natural window lighting. Tube design preserved exactly. Photorealistic, 4K, 1:1.",specs:{ratio:"1:1",usage:"Trust shot FB",style:"Detail trust",bg:"Soft home bokeh",lighting:"Warm window"}},
+
+{id:"AIS-03",title:"Aissatou — Ad FB portrait cuisine",section:"ads",targets:["aissatou"],product_ref:"tube",prompt:"Mature Black woman (late 40s) standing in her bright home kitchen, wearing an elegant but modest home outfit. She looks directly at the camera with a warm, genuine, confident smile. The Lipoxycut tube from @img1 is placed on the counter in front of her, in clear view but not hidden. Her skin is healthy, she looks radiant and happy. Natural morning light from a window behind her. Right third of the frame kept clean for testimonial text overlay. Feels like a real testimonial photo, never overproduced. Photorealistic, 4K, 1.91:1.",specs:{ratio:"1.91:1",usage:"Ad FB feed Aissatou",style:"Testimonial real",bg:"Home kitchen",lighting:"Morning natural"}},
+
+// ADS UNIVERSELLES
+{id:"AD-01",title:"Ad universelle — Tube + preuve clinique",section:"ads",targets:["mariama","fatou","aissatou"],product_ref:"tube",prompt:"Luxury beauty supplement advertisement. The Lipoxycut tube from @img1 is positioned at center-left of the frame, standing upright slightly tilted forward, casting a soft shadow on a warm bronze (#c96b2f) surface. Scattered coffee beans and a sprig of dried lavender around the base. A few small water droplets on the surface reflect the light. The right 40% of the frame is kept completely clean and empty for text overlay. Background gradient from warm bronze to cream. Premium cosmetic brand campaign quality. The tube branding must be 100% identical to the reference. Photorealistic, 4K, 1:1.",specs:{ratio:"1:1",usage:"Ad universelle tous segments",style:"Premium brand ad",bg:"Bronze to cream",lighting:"Studio warm"}},
+
+{id:"AD-02",title:"Ad universelle — Tube + silhouette",section:"ads",targets:["mariama","fatou"],product_ref:"tube",prompt:"Elegant beauty ad composition. On the left side: the Lipoxycut tube from @img1 placed on a small bronze pedestal. On the right side: a soft-focus profile silhouette of a confident Black woman's toned waist and hip, wearing minimalist beige activewear, lit from behind with a warm glow. The two elements are connected by a smooth bronze-to-cream gradient background. Clean top area (top 25%) left empty for headline text. Premium body-care campaign, tasteful and empowering. Tube branding preserved exactly. Photorealistic, 4K, 1:1.",specs:{ratio:"1:1",usage:"Ad IG/FB silhouette",style:"Product + silhouette",bg:"Bronze cream gradient",lighting:"Warm backlit"}},
+
+{id:"AD-03",title:"Ad Story — Routine 3 étapes",section:"ads",targets:["mariama","fatou","aissatou"],product_ref:"tube",prompt:"Vertical 9:16 Story visual divided into three stacked horizontal panels. Panel 1 (top): the Lipoxycut tube from @img1 standing on a bronze surface — labelled visually as 'Étape 1'. Panel 2 (middle): an elegant feminine hand squeezing a pearl of white cream onto the back of the other hand — labelled 'Étape 2'. Panel 3 (bottom): the same hand gently massaging cream onto the thigh in a circular motion — labelled 'Étape 3'. Each panel has a warm cream background, unified visual style. Minimal editorial mood. Leave space for numbered text overlays. Photorealistic, 4K.",specs:{ratio:"9:16",usage:"Story 3 étapes routine",style:"Triptych routine",bg:"Cream unified",lighting:"Soft consistent"}},
+
+{id:"AD-04",title:"Ad FB carrousel — Objection timeline",section:"ads",targets:["fatou","aissatou"],product_ref:"tube",prompt:"Clean three-panel horizontal carousel cover image. Panel 1: a calendar page marked Day 1 next to the Lipoxycut tube from @img1 on a cream surface. Panel 2: the same calendar marked Day 7, with a slight visible progression hint (a tape measure). Panel 3: Day 28, with the tube and a small golden laurel icon indicating results. Each panel softly connected by a cream-to-bronze gradient background. Readable, educational, reassuring tone addressing the 'how long before results' objection. Tube design preserved exactly. Photorealistic, 4K, 3:1.",specs:{ratio:"3:1",usage:"Carrousel FB objection temps",style:"Timeline educational",bg:"Cream to bronze",lighting:"Even soft"}},
+
+{id:"AD-05",title:"Ad Reels hook — Tube slow-mo",section:"ads",targets:["mariama"],product_ref:"tube",prompt:"Dynamic frozen-motion capture. The Lipoxycut tube from @img1 is suspended mid-air as if falling gently, rotated slightly, against a solid warm bronze (#c96b2f) background. Tiny coffee beans and orange slices frozen in motion around it. Dramatic side lighting creating soft highlights on the tube. High-impact vertical visual designed as a Reels hook opener. Keep the tube branding perfectly readable and identical to reference. Photorealistic, 4K, 9:16.",specs:{ratio:"9:16",usage:"Reels hook opener",style:"Motion capture",bg:"Solid bronze",lighting:"Dramatic side"}},
+
+// INGRÉDIENTS
+{id:"ING-01",title:"Ingrédient — Caféine grains éclatants",section:"benefits",targets:["fatou","mariama","aissatou"],product_ref:"none",prompt:"Macro food-beauty shot of freshly roasted coffee beans scattered on a warm bronze fabric surface. Some beans whole, some cracked open showing the inside. Tiny steam curls in the air. Shallow depth of field, dreamy bokeh. Background gradient from deep bronze to cream. Natural warm side lighting. Premium ingredient storytelling, no product in frame. Photorealistic, 4K, 1:1.",specs:{ratio:"1:1",usage:"Section ingrédient caféine",style:"Macro ingredient",bg:"Bronze fabric",lighting:"Warm side"}},
+
+{id:"ING-02",title:"Ingrédient — Vitamine C agrumes",section:"benefits",targets:["fatou","mariama","aissatou"],product_ref:"none",prompt:"Artistic macro shot of freshly sliced oranges and a few drops of juice suspended in the air. Placed on a warm cream surface with a soft bronze gradient background. Small green leaves as accents. Dreamy natural light, slightly overexposed highlights for a sun-soaked editorial feel. No product in frame. Photorealistic, 4K, 1:1.",specs:{ratio:"1:1",usage:"Section ingrédient vit C",style:"Macro food beauty",bg:"Cream to bronze",lighting:"Sun-soaked"}},
+
+{id:"ING-03",title:"Ingrédient — Cire d'abeille golden",section:"benefits",targets:["fatou","aissatou"],product_ref:"none",prompt:"Premium macro shot of golden beeswax blocks and a wooden honey dipper drizzling honey. Small dried flowers scattered around. Warm cream linen background with a soft bronze gradient. Warm directional side lighting creating golden highlights. Premium natural cosmetic ingredient storytelling. No product in frame. Photorealistic, 4K, 1:1.",specs:{ratio:"1:1",usage:"Section ingrédient cire",style:"Macro natural",bg:"Cream linen",lighting:"Warm golden"}},
+
+// IG FEED
+{id:"IG-ED-01",title:"IG Feed — Education 4 actifs infographie",section:"ig-feed",targets:["fatou","aissatou"],product_ref:"tube",prompt:"Clean educational infographic-style composition. The Lipoxycut tube from @img1 is centered vertically on a soft cream (#fdf6f0) surface. Four small ceramic dishes arranged in a semicircle around the tube, each holding one ingredient: roasted coffee beans, fresh orange slices, a drop of golden beeswax, and a sprig with small yellow flowers (representing biotine). Thin elegant bronze lines connect each dish to the tube. Overhead flat lay, perfectly symmetrical composition. Soft diffused daylight. Clean, premium, educational. Tube branding preserved exactly. Photorealistic, 4K, 1:1.",specs:{ratio:"1:1",usage:"IG Feed éducation actifs",style:"Flat lay infographic",bg:"Cream",lighting:"Diffused overhead"}},
+
+{id:"IG-PS-01",title:"IG Feed — Témoignage Fatou intérieur",section:"ig-feed",targets:["fatou"],product_ref:"tube",prompt:"Portrait of a sophisticated Black woman (early 30s) sitting on a cream velvet couch in a modern Dakar apartment, holding the Lipoxycut tube from @img1 casually near her chest. She wears gold jewelry and a stylish beige blouse. Her skin is flawless and glowing. She looks directly at the camera with a genuine warm smile — feels like a real person, not a model pose. Soft natural afternoon light from large windows. Clean left third of the frame for testimonial text overlay. Tube preserved exactly. Photorealistic, 4K, 1:1.",specs:{ratio:"1:1",usage:"IG Feed preuve sociale",style:"Testimonial portrait",bg:"Modern apartment",lighting:"Natural afternoon"}},
+
+{id:"IG-GL-01",title:"IG Feed — Glow jambes été poolside",section:"ig-feed",targets:["mariama","fatou"],product_ref:"none",prompt:"Summer aspirational beauty shot. A young Black woman's toned, glowing legs stretched out on a sunbed beside a turquoise pool. Warm golden hour light reflects off the water. She wears a simple beige swimsuit, a straw hat visible in the corner of the frame. The framing focuses on her smooth, even, hydrated legs. A small bottle of iced water beside her. No product in frame. Aspirational, empowering, summer-body confidence mood. Photorealistic, 4K, 1:1.",specs:{ratio:"1:1",usage:"IG Feed aspirationnel été",style:"Summer body",bg:"Poolside",lighting:"Golden hour"}},
+
+{id:"IG-RO-01",title:"IG Feed — Routine matin ritual flat lay",section:"ig-feed",targets:["fatou","aissatou"],product_ref:"tube",prompt:"Overhead flat lay of a morning self-care routine. On a soft cream fabric: the Lipoxycut tube from @img1, a folded beige towel, a ceramic mug of coffee, a wooden body brush, a sprig of eucalyptus, and a small gold hand mirror. Composition is calm, minimal, aspirational. Soft morning natural light from above-left. Feels like a quiet self-love ritual. Tube design preserved exactly. Photorealistic, 4K, 1:1.",specs:{ratio:"1:1",usage:"IG Feed ritual routine",style:"Flat lay ritual",bg:"Cream fabric",lighting:"Morning soft"}}
+];
+
+const FILTERS=[
+  {key:"all",label:"Tout"},
+  {key:"hero",label:"🎯 Hero"},
+  {key:"gallery",label:"🖼 Galerie"},
+  {key:"benefits",label:"✨ Bénéfices"},
+  {key:"lifestyle",label:"🌿 Lifestyle"},
+  {key:"ads",label:"💰 Ads"},
+  {key:"ig-feed",label:"📸 IG Feed"},
+  {key:"mariama",label:"Mariama 22-28"},
+  {key:"fatou",label:"Fatou 30-38"},
+  {key:"aissatou",label:"Aissatou 40+"}
+];
+
+let activeFilter="all";
+
+function el(tag, cls, text){
+  const e=document.createElement(tag);
+  if(cls) e.className=cls;
+  if(text!=null) e.textContent=text;
+  return e;
+}
+
+function renderFilters(){
+  const bar=document.getElementById("filtersBar");
+  bar.textContent="";
+  FILTERS.forEach(f=>{
+    const b=el("button","f-btn"+(f.key===activeFilter?" on":""),f.label);
+    b.dataset.filter=f.key;
+    b.addEventListener("click",()=>{activeFilter=f.key;renderFilters();renderGrid();});
+    bar.appendChild(b);
+  });
+}
+
+function matchFilter(p){
+  if(activeFilter==="all")return true;
+  if(["mariama","fatou","aissatou"].includes(activeFilter))return p.targets.includes(activeFilter);
+  return p.section===activeFilter;
+}
+
+function buildPromptNodes(text){
+  const frag=document.createDocumentFragment();
+  const parts=text.split(/(@img\d+)/g);
+  parts.forEach(part=>{
+    if(/^@img\d+$/.test(part)){
+      frag.appendChild(el("span","img-tag",part));
+    }else if(part){
+      frag.appendChild(document.createTextNode(part));
+    }
+  });
+  return frag;
+}
+
+function renderGrid(){
+  const grid=document.getElementById("grid");
+  grid.textContent="";
+  const filtered=PROMPTS.filter(matchFilter);
+  document.getElementById("countDisplay").textContent=filtered.length+" briefs";
+
+  filtered.forEach(p=>{
+    const card=el("div","card");
+
+    const head=el("div","card-head");
+    const row=el("div","row");
+    const left=el("div");
+    left.appendChild(el("div","title",p.title));
+    left.appendChild(el("div","id-label",p.id));
+    row.appendChild(left);
+    const tags=el("div","tags");
+    tags.appendChild(el("span","tag tag-section",p.section));
+    p.targets.forEach(t=>tags.appendChild(el("span","tag tag-"+t,t)));
+    if(p.product_ref==="tube") tags.appendChild(el("span","tag tag-tube","tube"));
+    row.appendChild(tags);
+    head.appendChild(row);
+    card.appendChild(head);
+
+    const pa=el("div","prompt-area");
+    const copyBtn=el("button","copy-btn","📋 Copier");
+    copyBtn.addEventListener("click",async(e)=>{
+      e.stopPropagation();
+      try{
+        await navigator.clipboard.writeText(p.prompt);
+        copyBtn.classList.add("copied");
+        copyBtn.textContent="✓ Copié";
+        setTimeout(()=>{copyBtn.classList.remove("copied");copyBtn.textContent="📋 Copier";},1600);
+      }catch(err){alert("Impossible de copier");}
+    });
+    pa.appendChild(copyBtn);
+    const pt=el("div","prompt-text");
+    pt.appendChild(buildPromptNodes(p.prompt));
+    pa.appendChild(pt);
+    card.appendChild(pa);
+
+    const specs=el("div","specs");
+    Object.entries(p.specs).forEach(([k,v])=>{
+      const s=el("div","spec");
+      s.appendChild(el("span","k",k));
+      s.appendChild(el("span","v",v));
+      specs.appendChild(s);
+    });
+    card.appendChild(specs);
+
+    grid.appendChild(card);
+  });
+}
+
+document.getElementById("exportBtn").addEventListener("click",()=>{
+  const blob=new Blob([JSON.stringify(PROMPTS,null,2)],{type:"application/json"});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement("a");
+  a.href=url;a.download="lipoxycut-briefs-nano-banana.json";a.click();
+  URL.revokeObjectURL(url);
+});
+
+renderFilters();
+renderGrid();
+</script>
+</body>
+</html>
