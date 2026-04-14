@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prompts Avant/Après Ultra-Réalistes — Lipoxycut</title>
+<style>
+:root{--bg:#f7f6f3;--white:#fff;--text:#111;--text2:#555;--text3:#999;--border:#e2e0db;--accent:#16a34a;--accent-pale:#dcfce7;--warn:#dc2626;--warn-pale:#fee2e2}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,Segoe UI,sans-serif;background:var(--bg);color:var(--text);line-height:1.5}
+.topbar{background:#111;color:#fff;padding:16px 28px;position:sticky;top:0;z-index:100;display:flex;justify-content:space-between;align-items:center}
+.topbar h1{font-size:15px;font-weight:900}
+.topbar h1 span{color:var(--accent)}
+.topbar .cnt{font-size:11px;font-weight:800;background:var(--accent);color:#111;padding:6px 14px;border-radius:50px}
+
+.intro{padding:24px 28px;background:var(--white);border-bottom:1px solid var(--border);max-width:980px;margin:0 auto}
+.intro h2{font-size:18px;font-weight:900;margin-bottom:10px}
+.intro p{font-size:13px;color:var(--text2);margin-bottom:8px;line-height:1.6;max-width:880px}
+.intro p b{color:#111}
+.intro .src{background:var(--accent-pale);border-left:3px solid var(--accent);padding:10px 14px;font-size:12px;margin:14px 0;border-radius:0 6px 6px 0}
+.intro .src b{color:#15803d}
+.intro .rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin-top:14px}
+.intro .rule{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:10px 14px;font-size:11px}
+.intro .rule .num{font-size:9px;font-weight:900;color:var(--accent);margin-bottom:3px;text-transform:uppercase;letter-spacing:.5px}
+.intro .rule b{color:#111}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(460px,1fr));gap:18px;padding:24px 28px 100px;max-width:1400px;margin:0 auto}
+.card{background:var(--white);border:1.5px solid var(--border);border-radius:16px;overflow:hidden;transition:.2s;display:flex;flex-direction:column}
+.card:hover{box-shadow:0 8px 28px rgba(0,0,0,.08);transform:translateY(-2px);border-color:var(--accent)}
+.card-head{padding:14px 18px;border-bottom:1px solid var(--border)}
+.card-head .num{font-size:10px;font-weight:900;color:var(--accent);letter-spacing:.5px;text-transform:uppercase;margin-bottom:4px}
+.card-head .title{font-size:14px;font-weight:800;line-height:1.3}
+.card-head .zone{font-size:11px;color:var(--text2);margin-top:4px}
+.card-head .tags{display:flex;gap:4px;flex-wrap:wrap;margin-top:8px}
+.tag{font-size:9px;font-weight:900;padding:4px 9px;border-radius:50px;text-transform:uppercase;letter-spacing:.3px}
+.tag-z{background:var(--accent-pale);color:#15803d}
+.tag-f{background:#fef3c7;color:#92400e}
+.tag-r{background:#e0e7ff;color:#3730a3}
+
+.coherence{background:var(--accent-pale);padding:10px 18px;border-bottom:1px solid var(--border);font-size:11px;color:#15803d;font-weight:700}
+.coherence b{display:block;font-size:9px;text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px}
+
+.headline-zone{background:#111;padding:14px 18px;color:#fff}
+.headline-zone .label{font-size:9px;font-weight:900;color:var(--accent);text-transform:uppercase;letter-spacing:1px;margin-bottom:5px}
+.headline-zone .hl{font-size:16px;font-weight:900;line-height:1.2;text-transform:uppercase;margin-bottom:5px}
+.headline-zone .sub{font-size:11px;color:#ccc;line-height:1.4}
+
+.prompt-area{padding:14px 18px;background:#fafaf7;flex:1;position:relative;border-top:1px solid var(--border)}
+.prompt-label{font-size:9px;font-weight:900;color:var(--accent);text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px}
+.prompt-text{font-size:12px;line-height:1.7;color:var(--text);padding-right:65px;white-space:pre-wrap}
+.copy-btn{position:absolute;top:10px;right:10px;background:#111;color:#fff;border:none;border-radius:5px;padding:6px 11px;font-size:9px;font-weight:800;cursor:pointer;opacity:.7;transition:.15s;text-transform:uppercase;letter-spacing:.3px}
+.copy-btn:hover{opacity:1}
+.copy-btn.ok{background:var(--accent);opacity:1}
+
+.specs{padding:10px 18px;display:flex;gap:14px;flex-wrap:wrap;border-top:1px solid var(--border);background:var(--bg)}
+.spec{font-size:10px;font-weight:700;color:var(--text3)}
+.spec b{color:var(--text)}
+
+.bar{position:fixed;bottom:0;left:0;right:0;background:var(--white);border-top:2px solid var(--accent);padding:12px 28px;display:flex;justify-content:space-between;align-items:center;z-index:100}
+.bar .info{font-size:12px;color:var(--text3)}
+.btn-exp{padding:10px 22px;border-radius:8px;border:none;font-family:inherit;font-size:11px;font-weight:900;cursor:pointer;background:var(--accent);color:#111;text-transform:uppercase;letter-spacing:.4px}
+@media(max-width:900px){.grid{grid-template-columns:1fr;padding:16px}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <h1>Avant/Après <span>Ultra-Réalistes</span> — Lipoxycut</h1>
+  <div class="cnt">10 créas</div>
+</div>
+
+<div class="intro">
+<h2>10 Avant/Après photo-réalistes — Pattern #1 prouvé</h2>
+<p>L'avant/après est le pattern le mieux performant des deux campagnes : <b>AbdoSlim Ad3 a fait $2.12 CPA avec 85% VC→ATC</b> — le taux le plus élevé de toutes nos campagnes. Ces 10 prompts sont conçus pour générer des transformations crédibles, jamais exagérées.</p>
+
+<div class="src">
+<b>📊 Source data :</b> AbdoSlim Ad3 Avant/Après Homme — $2.12 CPA, 5 achats, <b>85% des viewers ont ajouté au panier</b>. C'est le single best performer de toute la mémoire du compte.
+</div>
+
+<p><b>Règles de cohérence imposées dans chaque prompt</b> pour éviter le look IA et garantir la crédibilité :</p>
+<div class="rules">
+<div class="rule"><div class="num">Règle 1</div><b>Même personne</b> — mêmes traits, mêmes grains de beauté, mêmes vergetures</div>
+<div class="rule"><div class="num">Règle 2</div><b>Même lieu</b> — même salle de bain, mêmes carreaux, mêmes objets visibles</div>
+<div class="rule"><div class="num">Règle 3</div><b>Même angle</b> — même cadrage à 99%, même hauteur de prise de vue</div>
+<div class="rule"><div class="num">Règle 4</div><b>Même tenue</b> — sous-vêtement identique, mêmes bijoux</div>
+<div class="rule"><div class="num">Règle 5</div><b>Lumière subtilement différente</b> — avant froide / après chaude (suggère le temps qui passe)</div>
+<div class="rule"><div class="num">Règle 6</div><b>Transformation modérée</b> — 15-20% de différence visible, jamais 50%</div>
+<div class="rule"><div class="num">Règle 7</div><b>Marqueurs de date</b> — Post-it, calendrier, affichage smartphone</div>
+<div class="rule"><div class="num">Règle 8</div><b>Texture peau préservée</b> — pores, poils, micro-imperfections dans LES DEUX photos</div>
+</div>
+</div>
+
+<div class="grid" id="grid"></div>
+
+<div class="bar">
+  <div class="info"><b>Workflow :</b> prompt → Nano Banana → image avec espace pour @img1 → tu poses produit + headline via Canva</div>
+  <button class="btn-exp" id="exp">Exporter JSON</button>
+</div>
+
+<script>
+const P=[
+
+{id:"AA-01",title:"Cuisse extérieure — capitons J1 → J28",zone:"Cuisse extérieure droite",ratio:"1:1",format:"Feed IG/FB",coherence:"Même salle de bain (carreaux blancs subway, brosse à dents bleue), même sous-vêtement noir cotton, même angle 3/4, mêmes 2 grains de beauté visibles",headline:"-23% DE CAPITONS · JOUR 1 → JOUR 28",sub:"Étude clinique 07E2025. Massage 2 min matin et soir.",prompt:"Two side-by-side photographs separated by a thin 2-pixel white vertical divider. CRITICAL: both photos show the EXACT SAME Black woman (mid-30s), EXACT SAME bathroom, EXACT SAME body position, EXACT SAME outfit, EXACT SAME camera angle and framing.\n\nLEFT PHOTO (labeled 'JOUR 1' in small handwritten Post-it stuck to the mirror in upper-left): Close-up of her right outer thigh from hip to mid-thigh, photographed from a 3/4 angle. She wears simple black cotton high-waisted underwear. The skin shows subtle but visible cellulite dimpling — small soft indentations across the upper thigh, especially when light grazes from the side. Her two visible beauty marks: one near the hip bone, one mid-thigh. Cool flat fluorescent bathroom light from above, slightly bluish cast, creates flat shadows that emphasize the texture. Background: white subway tile wall, a glimpse of a blue toothbrush in a glass on the counter edge.\n\nRIGHT PHOTO (labeled 'JOUR 28' Post-it on mirror in same position): Same woman, same thigh, same angle, same underwear, same two beauty marks in EXACTLY same positions. The skin is now noticeably smoother and firmer — the dimpling is significantly reduced (about 70% less visible) but not gone — realistic. Warm window light from the side, slightly golden cast, suggesting morning light. Same subway tiles, same toothbrush.\n\nBoth shots: real iPhone 15 Pro photography, no smoothing filter, visible pores and fine hair on the skin, slight grain ISO 600. Both photos slightly tilted in identical way — like she handed the phone to the same person both times. Leave bottom 12% of total composition empty (white space) for product overlay later. No product or text in frame."},
+
+{id:"AA-02",title:"Ventre post-partum — fermeté 4 semaines",zone:"Ventre bas + linea alba",ratio:"4:5",format:"Feed FB",coherence:"Même chambre, même drap blanc froissé, même éclairage de fenêtre, mêmes vergetures (atténuées dans l'après mais TOUJOURS PRÉSENTES)",headline:"4 SEMAINES APRÈS BÉBÉ",sub:"Mon ventre commence à reprendre forme. Sans miracle, juste de la routine.",prompt:"Vertical 4:5 composition, two photos stacked top/bottom, separated by a thin 2-pixel white horizontal divider. CRITICAL coherence: same Black woman (early 30s), same bedroom, same lighting setup, same body position.\n\nTOP PHOTO (small handwritten card in corner reads 'SEMAINE 1'): A Black woman sitting on the edge of an unmade cream-colored bed, photographed from chest down to upper thighs. She wears beige cotton underwear, no top. Her bare lower belly is soft and slightly rounded, with visible faint pink-purple stretch marks across the lower abdomen — realistic post-partum skin. Her hands rest gently on her knees. A folded muslin blanket and a baby monitor visible on the nightstand to her right. Soft morning light from a window behind the camera, slightly overcast, no harsh shadows. Her skin tone is warm brown, visible pores.\n\nBOTTOM PHOTO ('SEMAINE 4' card in same corner position): Same woman, same bed (sheets re-rumpled in similar way), same underwear, same hand position. Belly is visibly firmer and flatter — about 20-25% reduction in softness — but the SAME stretch marks are still visible (slightly less pink, more silvery), still her body, still real. Same nightstand objects visible. Same morning light, slightly warmer (a bit later in the morning suggested).\n\nBoth shots: iPhone 15 Pro, no portrait blur, no skin smoothing. Visible body hair, natural pores. Leave bottom 15% as clean cream sheet area for product overlay. The honesty of preserved stretch marks is the credibility anchor."},
+
+{id:"AA-03",title:"Fesses — fossettes lissées vue de dos",zone:"Fesses + bas du dos",ratio:"1:1",format:"Feed IG",coherence:"Même salle de bain, même string noir minimaliste, même position légèrement penchée, même tatouage discret à la hanche",headline:"BYE BYE FOSSETTES",sub:"Galbe + fermeté en 4 semaines. Visible. Vrai.",prompt:"Two side-by-side photographs, thin 2-pixel white vertical divider. SAME woman, SAME bathroom, SAME pose.\n\nLEFT (small 'AVANT' on a Post-it stuck to bathroom wall): A Black woman (late 20s) standing facing away from the camera, photographed from mid-back to upper thigh. She wears simple black minimal cotton underwear. Her glutes show subtle dimpling — natural cellulite fossettes near the upper buttocks where they meet the lower back. A small discreet tattoo on her right hip — three small dots arranged as a triangle. Her stance is natural, weight slightly on her left leg. Cool overhead bathroom LED, harsh and direct, casts shadows that highlight the skin texture. Background: a beige towel on a hook, a closed shower curtain edge visible.\n\nRIGHT ('APRÈS' Post-it in identical position): Same woman, same back view, same underwear, same weight distribution, same triangle tattoo (in EXACTLY same position). The buttock skin is notably smoother — fossettes reduced by approximately 70%, the surface looks firmer and more even. Same towel, same shower curtain. Soft warm side light from a window now (suggests passage of time).\n\nBoth: shot on Canon EOS R5, 50mm f/2.8, ISO 800, slight grain. Real skin texture, fine hair, the same small mole near her right shoulder blade visible in both. No retouching look. Leave bottom 10% clean for product placement. Realistic transformation, never airbrushed."},
+
+{id:"AA-04",title:"Hanches — galbe affiné silhouette",zone:"Tour de hanches + taille",ratio:"4:5",format:"Feed IG",coherence:"Même mur cream, même sous-vêtement, même bracelet doré au poignet droit, même position bras levés mains derrière la nuque",headline:"-3CM DE TOUR DE HANCHES",zoneSub:"En 28 jours. Mesure non truquée.",sub:"En 28 jours. Massage ciblé matin et soir.",prompt:"Vertical 4:5 composition, two photos placed side by side with a thin white divider. SAME woman, SAME wall, SAME pose, SAME outfit.\n\nLEFT (small handwritten paper 'J1' attached to wall in upper-right corner with tape): A Black woman (mid-30s) photographed from chest down to mid-thigh, standing against a plain cream-painted wall (slight texture, one tiny crack near the floor). She wears simple beige seamless underwear. Hands are placed behind her head, elbows out wide — a posture that exposes her natural waist-to-hip silhouette. Her hips show their natural width with a soft contour. A thin gold bracelet on her right wrist. A tiny mole on her left side, just above the hip bone. Natural daylight from the left, soft and even.\n\nRIGHT ('J28' paper in identical position): Exact same setup. Hips appear slightly more defined, waist looks slightly more sculpted (reduction ~5% in apparent hip-to-waist transition softness — modest, realistic). Same bracelet, same mole in same exact spot, same wall crack, same paper position. Light is identical (suggesting same time of day, same window).\n\nBoth shots: Canon EOS R5, 35mm f/2.8, ISO 400, very slight grain. Skin shows real texture — pores, fine hair on the lower belly, a subtle linea alba mark. NEVER perfect, NEVER airbrushed. Leave clean space at the bottom 12% (cream wall) for product overlay. The bracelet, mole, and wall crack are critical authenticity anchors."},
+
+{id:"AA-05",title:"Cuisse intérieure — peau touchée du doigt",zone:"Cuisse intérieure haute",ratio:"1:1",format:"Feed IG",coherence:"Même short denim baissé légèrement, même salle de bain, même position assise, le doigt qui touche la peau dans les DEUX photos pour comparer la fermeté",headline:"LE TEST DU DOIGT",sub:"Avant : la peau marque. Après : elle rebondit. La preuve que ça change vraiment.",prompt:"Two side-by-side photographs separated by a thin white vertical line. SAME Black woman, SAME bathroom, SAME pose, SAME outfit.\n\nLEFT (Post-it 'JOUR 1' stuck on the bathroom mirror in the background): Close-up of a Black woman's inner upper thigh as she sits on the edge of a closed toilet lid, wearing dark blue denim shorts pulled down slightly to expose the thigh. Her index finger is pressing firmly into her inner thigh skin — the indent is clearly visible, the skin holds the impression briefly, slightly soft and giving. Visible skin texture: pores, fine hair, a small freckle on the inner thigh. Background slightly out of focus: white tiled wall, edge of a bathtub. Cool bathroom LED light from above.\n\nRIGHT (Post-it 'JOUR 28' in identical position on mirror): Exact same scene — same shorts at same height, same toilet, same hand position with index finger pressing the same spot. But the skin now bounces back immediately — no indent, more elastic. Same freckle in EXACT same position, same pores pattern, same fine hair. Same lighting (slightly warmer).\n\nBoth shots: iPhone 15 Pro, slight motion blur on the pressing finger (1/60s), real handheld feel. The freckle is the key visual anchor proving same person, same body. Leave bottom 10% empty for product placement. Real skincare documentation, not glamour."},
+
+{id:"AA-06",title:"Pinch test ventre — épaisseur peau réduite",zone:"Ventre bas pinch test",ratio:"1:1",format:"Feed FB",coherence:"Mêmes mains de la femme qui pince son propre ventre, même tatouage poignet, même salle de bain, même nombril visible",headline:"PINCE TON VENTRE.",sub:"-23% d'épaisseur de pli cutané en 28 jours. Mesuré.",prompt:"Two side-by-side photographs, thin 2-pixel white vertical divider. SAME woman, SAME pinch gesture, SAME body position.\n\nLEFT ('J1' written in small black marker on a strip of medical tape stuck near her hip): Close-up of a Black woman's lower belly, photographed from her own POV looking down at herself. Both her hands are pinching her belly fat just above the navel — the pinch shows a clearly visible thick fold of skin and subcutaneous fat between her fingers. Her navel is in view at the bottom. A small wrist tattoo visible on her right wrist — a single thin line. Natural skin: warm brown, visible pores, faint linea nigra (vertical line). Bathroom background blurred — cream tiles. Soft overhead light.\n\nRIGHT ('J28' tape in identical position with same handwriting): Exact same hands, same pinch gesture, same wrist tattoo in identical position, same navel visible. The pinched fold is now noticeably thinner — about 30% less thick between the fingers. Same linea nigra mark (slightly faded). Same lighting. Same bathroom blur.\n\nBoth: shot on iPhone 15 Pro from POV down-angle, slight handheld softness, visible skin imperfections. The wrist tattoo is the critical proof of same person. Leave 10% clean space at bottom of composition for product overlay. The pinch is the visceral, undeniable proof."},
+
+{id:"AA-07",title:"Vue arrière complète — silhouette dos",zone:"Silhouette complète de dos",ratio:"4:5",format:"Feed IG",coherence:"Même peignoir blanc en coton ouvert dans le dos, même position face au miroir en pied, mêmes cheveux attachés en chignon haut",headline:"REGARDE LA DIFFÉRENCE.",sub:"Cuisses + fesses + hanches en 28 jours. Une seule crème.",prompt:"Vertical 4:5 composition, two photographs side by side with thin white divider. SAME woman, SAME mirror, SAME outfit.\n\nLEFT ('SEMAINE 1' written on a Post-it stuck to the corner of a full-length mirror): A Black woman (early 30s) standing in front of a full-length mirror, photographed from behind — we see her full back view from shoulders to mid-calf in the mirror's reflection. She wears a white cotton bathrobe pulled down to expose her back, shoulders, and the curve of her glutes/hips, then loosely tied at the waist. Her hair is in a high messy bun. Her natural body shape: hips and thighs with subtle softness, gentle dimpling visible on the back of the thighs and upper buttocks. The photographer (her) is partially visible holding an iPhone. Background of bedroom: an unmade bed visible on the right, a dresser. Warm lamp light from the bedside.\n\nRIGHT ('SEMAINE 4' Post-it in identical position): Exact same setup — same mirror, same robe at same height, same bun. Her body silhouette is slightly more defined, glutes more lifted, thigh dimpling reduced by about 60%, hips slightly more sculpted. Subtle realistic transformation. Same bed visible, same lamp, same Post-it position.\n\nBoth shots: iPhone 15 Pro mirror selfie composition, slight finger smudge visible on the lens edge in both photos, natural skin texture. Leave bottom 12% as clean bedroom floor area for product placement. The same messy bun and same robe drape are the authenticity anchors."},
+
+{id:"AA-08",title:"Mètre ruban tour de cuisse",zone:"Tour de cuisse haute",ratio:"1:1",format:"Feed FB",coherence:"Même mètre ruban couture jaune mesurant exactement la même cuisse à la même hauteur, mêmes ongles courts naturels",headline:"-2,5 CM DE TOUR DE CUISSE",sub:"Mesuré au mètre. 28 jours d'application. 19,90 €.",prompt:"Two side-by-side photographs separated by a thin white vertical line. SAME woman, SAME measuring action, SAME body part.\n\nLEFT (small 'JOUR 1' label on a piece of tape stuck on her thigh ABOVE the measuring tape): Close-up of a Black woman's right thigh, photographed from her own POV looking down. She is wrapping a soft yellow seamstress measuring tape around her upper thigh, pulling it snug but not tight. The visible measurement on the tape reads '64 cm' clearly. Her natural short unpolished nails visible on both hands. A small freckle on her thigh next to where she's measuring. The thigh has subtle natural softness, slight cellulite visible above the tape line. Background: dark gray leggings pulled down to her knees, cream bedroom carpet. Natural daylight from above-left, soft.\n\nRIGHT ('JOUR 28' label in identical handwriting on identical tape, same position on thigh): Exact same scene, same yellow tape wrapped at exactly the same height. The measurement now reads '61.5 cm' clearly. Same freckle, same nails, same leggings, same carpet. The thigh skin above the tape is now firmer and smoother. Same lighting.\n\nBoth: iPhone 15 Pro from POV, slight handheld softness, no smoothing filter. Real skin pores and fine leg hair visible. The yellow tape and freckle are critical anchors. Leave 10% clean carpet area at the bottom for product overlay. Visceral, undeniable measurement proof."},
+
+{id:"AA-09",title:"Test secousse — fermeté en mouvement",zone:"Cuisse haute en mouvement",ratio:"9:16",format:"Story/Reels",coherence:"Même femme tape sa cuisse avec la main, capture frozen-frame du mouvement, même short, même position",headline:"AVANT : ÇA TREMBLE. APRÈS : ÇA TIENT.",sub:"La fermeté n'est pas un mythe. C'est ce que tu vois ici.",prompt:"Vertical 9:16 composition, two photos stacked top/bottom, thin white horizontal divider. SAME woman, SAME action, SAME outfit.\n\nTOP PHOTO ('AVANT' label written in marker on a Post-it taped to her shorts): Frozen action shot of a Black woman (late 20s) sitting on the edge of a wooden stool wearing dark blue gym shorts, slapping her right outer thigh with her open hand. The frozen motion captures the slight ripple of soft tissue across her thigh — visible jiggle effect frozen mid-motion, soft skin reacting to the impact. Her face partially visible at the top — focused, slightly amused expression. Background: a plain cream-painted home wall, a yoga mat rolled up against the baseboard. Natural overhead daylight, slightly cool.\n\nBOTTOM PHOTO ('APRÈS' Post-it in same position): Exact same woman, same stool, same shorts, same hand slap action, same facial expression. But the thigh now shows minimal ripple — much firmer, the slap creates only a brief subtle response, the tissue stays in place. Same yoga mat in background. Same lighting.\n\nBoth: Shot on iPhone 15 Pro, frozen at 1/250s shutter, slight motion artifact on the slapping hand only. Real skin texture in both, no smoothing. Same gold ring on her index finger in identical position. Leave 12% empty space at bottom for product placement. The motion comparison is the visceral proof."},
+
+{id:"AA-10",title:"Selfie miroir tour de taille",zone:"Taille + ventre profil",ratio:"9:16",format:"Story/Reels",coherence:"Même brassière noire, même chambre, même téléphone visible dans le miroir, même position de profil 3/4",headline:"4 SEMAINES PLUS TARD",sub:"Pas de filtre. Pas de retouche. Juste la routine de 2 min/jour.",prompt:"Vertical 9:16, two photos side by side with a thin white vertical divider. SAME woman, SAME mirror selfie, SAME outfit.\n\nLEFT (small Post-it on the corner of the mirror reads 'JOUR 1'): A young Black woman (mid-20s) taking a 3/4 profile mirror selfie in her bedroom, photographed from her side. She wears a simple black sports bra and matching black high-waisted underwear. One hand holds her iPhone (clearly visible in the mirror reflection), the other hangs at her side. Her natural body in profile: slight softness around the lower belly, normal curve from waist to hip. Her bedroom: an unmade bed with white sheets visible behind her, a chair with clothes draped on it, a phone charger on the floor. Warm overhead lamp light, slightly yellow cast.\n\nRIGHT (Post-it 'JOUR 28' in EXACTLY the same corner of the same mirror): Exact same selfie composition — same profile angle, same outfit, same iPhone in same hand position. The lower belly is visibly flatter (~20% reduction in softness), the waist-to-hip line slightly more defined. Same unmade bed, same chair, same phone charger on the floor. Same warm light.\n\nBoth: iPhone 15 Pro front-facing camera quality (slightly softer than rear cam), visible mirror smudge near the bottom right in BOTH photos (same position), real skin texture, natural pose imperfection. The mirror smudge and Post-it positioning are the key authenticity anchors. Leave bottom 12% as clean bedroom floor for product overlay."}
+
+];
+
+function el(t,c,x){const e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e;}
+
+function renderGrid(){
+  const g=document.getElementById("grid");
+  g.textContent="";
+  P.forEach(p=>{
+    const card=el("div","card");
+    const head=el("div","card-head");
+    head.appendChild(el("div","num",p.id+" — Avant/Après photo-réaliste"));
+    head.appendChild(el("div","title",p.title));
+    head.appendChild(el("div","zone","Zone : "+p.zone));
+    const tags=el("div","tags");
+    tags.appendChild(el("span","tag tag-z",p.zone.split(" ")[0]));
+    tags.appendChild(el("span","tag tag-f",p.format));
+    tags.appendChild(el("span","tag tag-r",p.ratio));
+    head.appendChild(tags);
+    card.appendChild(head);
+
+    const co=el("div","coherence");
+    co.appendChild(el("b","","🔒 Cohérence imposée"));
+    co.appendChild(document.createTextNode(p.coherence));
+    card.appendChild(co);
+
+    const hz=el("div","headline-zone");
+    hz.appendChild(el("div","label","Headline à poser via Canva"));
+    hz.appendChild(el("div","hl",p.headline));
+    hz.appendChild(el("div","sub",p.sub));
+    card.appendChild(hz);
+
+    const pa=el("div","prompt-area");
+    pa.appendChild(el("div","prompt-label","Prompt Nano Banana — image SANS produit"));
+    const cb=el("button","copy-btn","COPIER");
+    cb.addEventListener("click",async(e)=>{
+      e.stopPropagation();
+      try{await navigator.clipboard.writeText(p.prompt);cb.classList.add("ok");cb.textContent="OK";setTimeout(()=>{cb.classList.remove("ok");cb.textContent="COPIER";},1500);}catch(err){}
+    });
+    pa.appendChild(cb);
+    const pt=el("div","prompt-text");
+    pt.appendChild(document.createTextNode(p.prompt));
+    pa.appendChild(pt);
+    card.appendChild(pa);
+
+    const sp=el("div","specs");
+    const addS=(k,v)=>{const s=el("span","spec");s.appendChild(el("b","",k+": "));s.appendChild(document.createTextNode(v));sp.appendChild(s);};
+    addS("Format",p.format);addS("Ratio",p.ratio);addS("Zone",p.zone);
+    card.appendChild(sp);
+    g.appendChild(card);
+  });
+}
+
+document.getElementById("exp").addEventListener("click",()=>{
+  const b=new Blob([JSON.stringify(P,null,2)],{type:"application/json"});
+  const u=URL.createObjectURL(b);
+  const a=document.createElement("a");a.href=u;a.download="lipoxycut-avant-apres.json";a.click();
+  URL.revokeObjectURL(u);
+});
+
+renderGrid();
+</script>
+</body>
+</html>
